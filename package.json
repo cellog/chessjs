@@ -1,0 +1,25 @@
+{
+  "name": "chessrules",
+  "version": "0.1.0",
+  "description": "Abstract visualization of chess rules, with an easy interface to render the chess board",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cellog/chessjs.git"
+  },
+  "keywords": [
+    "chess"
+  ],
+  "author": "Gregory Beaver",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cellog/chessjs/issues"
+  },
+  "homepage": "https://github.com/cellog/chessjs"
+}
