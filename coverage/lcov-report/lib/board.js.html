@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/board.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(60 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">80.25% <small>(65 / 81)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">100% <small>(12 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(18 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">76% <small>(19 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(59 / 59)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">82.05% <small>(64 / 78)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -358,7 +358,31 @@
 140
 141
 142
-143</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
@@ -475,31 +499,55 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">30</span>
-<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
 <span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">30</span>
-<span class="cline-any cline-yes">30</span>
-<span class="cline-any cline-yes">30</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31</span>
-<span class="cline-any cline-yes">31</span>
-<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">32</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">25</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var Long = require("long")
 var chess = exports
 chess.board = board
@@ -630,6 +678,11 @@ function Bitboard() {
 &nbsp;
 Bitboard.prototype = new Long(0,0,true)
 &nbsp;
+Bitboard.fromBinary = function(bin) {
+ var high = bin.slice(0,32), low = bin.slice(-32)
+ return new Bitboard(parseInt(high, 2), parseInt(low, 2))
+}
+&nbsp;
 Bitboard.prototype.debugString = function() {
  var lower = this.getLowBitsUnsigned().toString(2),
      upper = this.getHighBitsUnsigned().toString(2),
@@ -642,12 +695,31 @@ Bitboard.prototype.debugString = function() {
 Bitboard.prototype.toArray = function() {
  return this.debugString().replace(/0/g, ' ').replace(/1/g, this.piece).split('')
 }
-&nbsp;</pre></td></tr>
+&nbsp;
+Bitboard.prototype.northFill = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" > var high = this.high, low = this.low,</span>
+     lsh = <span class="fstat-no" title="function not covered" >function(numBits) {<span class="cstat-no" title="statement not covered" ></span>low = low &lt;&lt; numBits; <span class="cstat-no" title="statement not covered" ></span>high = (high &lt;&lt; numBits) | (low &gt;&gt;&gt; (32 - numBits))}</span>,
+     or  = <span class="fstat-no" title="function not covered" >function(l, h) {<span class="cstat-no" title="statement not covered" ></span>low = low | l, high = high | h}</span>
+<span class="cstat-no" title="statement not covered" > or(lsh(8))</span>
+<span class="cstat-no" title="statement not covered" > or(lsh(16))</span>
+<span class="cstat-no" title="statement not covered" > or(lsh(32))</span>
+<span class="cstat-no" title="statement not covered" > return new Bitboard(low, high)</span>
+}
+&nbsp;
+Bitboard.prototype.southFill = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" > var high = this.high, low = this.low,</span>
+     rsh = <span class="fstat-no" title="function not covered" >function(numBits) {<span class="cstat-no" title="statement not covered" ></span>low = (low &gt;&gt;&gt; numBits) | (high &lt;&lt; (32 - numBits)); <span class="cstat-no" title="statement not covered" ></span>high = high &gt;&gt; numBits}</span>,
+     or  = <span class="fstat-no" title="function not covered" >function(l, h) {<span class="cstat-no" title="statement not covered" ></span>low = low | l, high = high | h}</span>
+<span class="cstat-no" title="statement not covered" > or(rsh(8))</span>
+<span class="cstat-no" title="statement not covered" > or(rsh(16))</span>
+<span class="cstat-no" title="statement not covered" > or(rsh(32))</span>
+<span class="cstat-no" title="statement not covered" > return new Bitboard(low, high)</span>
+}</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 08 2015 09:26:07 GMT-0600 (CST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 08 2015 10:14:47 GMT-0600 (CST)</div>
 </div>
 
 <script src="../prettify.js"></script>

@@ -185,4 +185,40 @@ describe("Bitboard", function() {
                 )
         })
     })
+
+    describe("fromBinary", function() {
+        it("should return a correct bitboard", function() {
+            chess.bitboard.fromBinary('00000000' +
+                    '11111111' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                ).debugString().should.eql('00000000' +
+                    '11111111' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+        })
+    })
+
+    describe("vertical fill", function() {
+        describe("north fill", function() {
+            it("should fill northly", function() {
+                "not implemented".should.not.ok
+            })
+        })
+
+        describe("south fill", function() {
+            it("should fill southly", function() {
+                "not implemented".should.not.ok
+            })
+        })
+    })
 })
