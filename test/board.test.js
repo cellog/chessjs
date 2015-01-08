@@ -351,7 +351,16 @@ describe("Chessboard", function() {
 })
 
 describe("Bitboard", function() {
-    var myboard;
+    var myboard, bitboard = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000100' +
+                    '00000010' +
+                    '00000000' +
+                    '00010000' +
+                    '01100000' +
+                    '00000000'
+                );
     
     before(function() {
         myboard = new chess.board;
@@ -413,14 +422,14 @@ describe("Bitboard", function() {
                     '00010000' +
                     '01100000' +
                     '00000010'
-                ).debugString().should.eql(
-                    '01000000' +
-                    '00100000' +
-                    '00000100' +
-                    '00000010' +
-                    '00000000' +
-                    '00010000' +
-                    '01100000' +
+                ).debugString("\n").should.eql(
+                    '01000000' + "\n" +
+                    '00100000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000010' + "\n" +
+                    '00000000' + "\n" +
+                    '00010000' + "\n" +
+                    '01100000' + "\n" +
                     '00000010'
                 )
         })
@@ -429,16 +438,7 @@ describe("Bitboard", function() {
     describe("vertical fill", function() {
         describe("north fill", function() {
             it("should fill northly", function() {
-                chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000100' +
-                    '00000010' +
-                    '00000000' +
-                    '00010000' +
-                    '01100000' +
-                    '00000000'
-                ).northFill().debugString("\n").should.eql(
+                bitboard.northFill().debugString("\n").should.eql(
                     '01110110' + "\n" +
                     '01110110' + "\n" +
                     '01110110' + "\n" +
@@ -453,16 +453,7 @@ describe("Bitboard", function() {
 
         describe("south fill", function() {
             it("should fill southly", function() {
-                chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000100' +
-                    '00000010' +
-                    '00000000' +
-                    '00010000' +
-                    '01100000' +
-                    '00000000'
-                ).southFill().debugString("\n").should.eql(
+                bitboard.southFill().debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
                     '00000100' + "\n" +
@@ -472,6 +463,37 @@ describe("Bitboard", function() {
                     '01110110' + "\n" +
                     '01110110'
                 )
+            })
+        })
+    })
+
+    describe("pawn moves", function() {
+        describe("pawn pushes", function() {
+            describe("bitboard shift", function() {
+                it("north one square", function() {
+                    bitboard.northOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000010' + "\n" +
+                    '00000000' + "\n" +
+                    '00010000' + "\n" +
+                    '01100000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
+                it("south one square", function() {
+                    bitboard.southOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000010' + "\n" +
+                    '00000000' + "\n" +
+                    '00010000' + "\n" +
+                    '01100000'
+                    )
+                })
             })
         })
     })
