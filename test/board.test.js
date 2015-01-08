@@ -16,7 +16,7 @@ describe("Chessboard", function() {
             myboard.bitboards.should.have.ownProperty('black').and.is.instanceof(Array).and.length(6)
         })
 
-        describe("whitepieces", function() {
+        describe("blackpieces", function() {
             it("should return 0x000000000000ffff", function() {
                 var b = myboard.blackpieces
                 b.should.be.instanceof(chess.bitboard)
@@ -29,6 +29,23 @@ describe("Chessboard", function() {
                     '00000000' +
                     '11111111' +
                     '11111111'
+                )
+            })
+        })
+
+        describe("whitepieces", function() {
+            it("should return 0x000000000000ffff", function() {
+                var b = myboard.whitepieces
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString().should.eql(
+                    '11111111' +
+                    '11111111' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
                 )
             })
         })
