@@ -10,21 +10,44 @@ describe("Chessboard", function() {
         myboard = new chess.board;
     });
 
-    it("bitboards should exist", function() {
-        myboard.bitboards.should.have.ownProperty('white').and.is.instanceof(Array).and.length(7)
-        myboard.bitboards.should.have.ownProperty('black').and.is.instanceof(Array).and.length(7)
-        myboard.bitboards.should.have.ownProperty('empty').and.is.instanceof(Long)
-        myboard.bitboards.should.have.ownProperty('both').and.is.instanceof(Long)
-        chess.bitboardString(myboard.bitboards.both).should.eql(
-            '11111111' +
-            '11111111' +
-            '00000000' +
-            '00000000' +
-            '00000000' +
-            '00000000' +
-            '11111111' +
-            '11111111'
-        )
+    describe("bitboards", function() {
+        it("should exist", function() {
+            myboard.bitboards.should.have.ownProperty('white').and.is.instanceof(Array).and.length(6)
+            myboard.bitboards.should.have.ownProperty('black').and.is.instanceof(Array).and.length(6)
+        })
+        
+        describe("both", function() {
+            it("should return 0xffff00000000ffff", function() {
+                var b = myboard.both
+                b.should.be.instanceof(Long)
+                chess.bitboardString(b).should.eql(
+                    '11111111' +
+                    '11111111' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '11111111' +
+                    '11111111'
+                )
+            })
+        })
+        describe("whitepieces", function() {
+            it("should return 0x000000000000ffff", function() {
+                var b = myboard.blackpieces
+                b.should.be.instanceof(Long)
+                chess.bitboardString(b).should.eql(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '11111111' +
+                    '11111111'
+                )
+            })
+        })
     })
     
     describe("toIndex", function () {
@@ -43,7 +66,7 @@ describe("Chessboard", function() {
             myboard.toIndex.bind(null, 89).should.throw('Invalid input "89"')
         })
     })
-    
+
 })
 
 describe("bitboardString", function() {
@@ -64,7 +87,7 @@ describe("bitboardString", function() {
                 '00000000' +
                 '00000000'
             )
-        chess.bitboardString(myboard.bitboards.white[6]).should
+        chess.bitboardString(new Long(0xffff0000,0)).should
             .equal(
                 '11111111' +
                 '11111111' +
