@@ -497,9 +497,9 @@ describe("Bitboard", function() {
             })
 
             describe("target squares", function() {
-                var myboard = new chess.board
-                myboard.bitboards.white[0] = bitboard
                 it("white", function() {
+                    var myboard = new chess.board
+                    myboard.bitboards.white[0] = bitboard
                     myboard.whitePawnPushTargets().debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -511,7 +511,20 @@ describe("Bitboard", function() {
                     '00000000'
                     )
                 })
-                it("black")
+                it("black", function() {
+                    var myboard = new chess.board
+                    myboard.bitboards.black[0] = bitboard
+                    myboard.blackPawnPushTargets().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000010' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
             })
         })
     })
