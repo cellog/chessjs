@@ -495,6 +495,24 @@ describe("Bitboard", function() {
                     )
                 })
             })
+
+            describe("target squares", function() {
+                var myboard = new chess.board
+                myboard.bitboards.white[0] = bitboard
+                it("white", function() {
+                    myboard.whitePawnPushTargets().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000010' + "\n" +
+                    '00000000' + "\n" +
+                    '00010000' + "\n" +
+                    '01100000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
+                it("black")
+            })
         })
     })
 })
