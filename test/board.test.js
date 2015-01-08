@@ -19,8 +19,8 @@ describe("Chessboard", function() {
         describe("whitepieces", function() {
             it("should return 0x000000000000ffff", function() {
                 var b = myboard.blackpieces
-                b.should.be.instanceof(Long)
-                chess.bitboardString(b).should.eql(
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString().should.eql(
                     '00000000' +
                     '00000000' +
                     '00000000' +
@@ -36,8 +36,8 @@ describe("Chessboard", function() {
         describe("both", function() {
             it("should return 0xffff00000000ffff", function() {
                 var b = myboard.both
-                b.should.be.instanceof(Long)
-                chess.bitboardString(b).should.eql(
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString().should.eql(
                     '11111111' +
                     '11111111' +
                     '00000000' +
@@ -53,8 +53,8 @@ describe("Chessboard", function() {
         describe("emptysquares", function() {
             it("should return 0x0000ffffffff0000", function() {
                 var b = myboard.emptysquares
-                b.should.be.instanceof(Long)
-                chess.bitboardString(b).should.eql(
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString().should.eql(
                     '00000000' +
                     '00000000' +
                     '11111111' +
@@ -87,14 +87,14 @@ describe("Chessboard", function() {
 
 })
 
-describe("bitboardString", function() {
+describe("Bitboard", function() {
     var myboard;
     
     before(function() {
         myboard = new chess.board;
     });
     it("should return binary string representation for debugging", function() {
-        chess.bitboardString(myboard.bitboards.white[0]).should
+        myboard.bitboards.white[0].debugString().should
             .equal(
                 '00000000' +
                 '11111111' +
@@ -105,7 +105,7 @@ describe("bitboardString", function() {
                 '00000000' +
                 '00000000'
             )
-        chess.bitboardString(new Long(0xffff0000,0)).should
+        new chess.bitboard(0xffff0000,0).debugString().should
             .equal(
                 '11111111' +
                 '11111111' +
