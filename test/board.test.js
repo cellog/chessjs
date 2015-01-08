@@ -18,11 +18,11 @@ describe("Chessboard", function() {
     })
     
     describe("squareToBit", function () {
-        it("should return 0 for a8", function() {
-            myboard.squareToBit('a8').should.eql(0)
+        it("should return 0 for a1", function() {
+            myboard.squareToBit('a1').should.eql(0)
         })
-        it("should return 63 for h1", function() {
-            myboard.squareToBit('h1').should.eql(63)
+        it("should return 63 for h8", function() {
+            myboard.squareToBit('h8').should.eql(63)
         })
     })
 })
