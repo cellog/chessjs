@@ -527,6 +527,20 @@ describe("Bitboard", function() {
                     '00000000'
                     )
                 })
+                it("white double", function() {
+                    var myboard = new chess.board
+                    myboard.bitboards.white[0] = bitboard
+                    myboard.whiteDoublePawnPushTargets().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '01100000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
                 it("black", function() {
                     var myboard = new chess.board
                     myboard.bitboards.black[0] = bitboard
@@ -536,6 +550,29 @@ describe("Bitboard", function() {
                     '00000000' + "\n" +
                     '00000100' + "\n" +
                     '00000010' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
+                it("black double", function() {
+                    var myboard = new chess.board
+                    myboard.bitboards.black[0] = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00100000' +
+                    '00000100' +
+                    '00000010' +
+                    '00000000' +
+                    '00010000' +
+                    '01100000' +
+                    '00000000'
+                )
+                    myboard.blackDoublePawnPushTargets().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00100000' + "\n" +
+                    '00000000' + "\n" +
                     '00000000' + "\n" +
                     '00000000' + "\n" +
                     '00000000'
