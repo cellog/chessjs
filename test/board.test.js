@@ -235,6 +235,10 @@ describe("Chessboard", function() {
                     '00000000'
                 )
             })
+            it("should hit cache", function() {
+                var b = myboard.blackpieces, c = myboard.blackpieces
+                b.should.be.equal(c)
+            })
         })
 
         describe("whitepieces", function() {
@@ -251,6 +255,10 @@ describe("Chessboard", function() {
                     '11111111' + "\n" +
                     '11111111'
                 )
+            })
+            it("should hit cache", function() {
+                var b = myboard.whitepieces, c = myboard.whitepieces
+                b.should.be.equal(c)
             })
         })
         
@@ -269,6 +277,10 @@ describe("Chessboard", function() {
                     '11111111'
                 )
             })
+            it("should hit cache", function() {
+                var b = myboard.both, c = myboard.both
+                b.should.be.equal(c)
+            })
         })
         
         describe("emptysquares", function() {
@@ -285,6 +297,10 @@ describe("Chessboard", function() {
                     '00000000' +
                     '00000000'
                 )
+            })
+            it("should hit cache", function() {
+                var b = myboard.emptysquares, c = myboard.emptysquares
+                b.should.be.equal(c)
             })
         })
 
