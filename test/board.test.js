@@ -541,6 +541,7 @@ describe("Bitboard", function() {
                     '00000000'
                     )
                 })
+                
                 it("black", function() {
                     var myboard = new chess.board
                     myboard.bitboards.black[0] = bitboard
@@ -558,15 +559,15 @@ describe("Bitboard", function() {
                 it("black double", function() {
                     var myboard = new chess.board
                     myboard.bitboards.black[0] = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00100000' +
-                    '00000100' +
-                    '00000010' +
-                    '00000000' +
-                    '00010000' +
-                    '01100000' +
-                    '00000000'
-                )
+                        '00000000' +
+                        '00100000' +
+                        '00000100' +
+                        '00000010' +
+                        '00000000' +
+                        '00010000' +
+                        '01100000' +
+                        '00000000'
+                    )
                     myboard.blackDoublePawnPushTargets().debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -578,6 +579,33 @@ describe("Bitboard", function() {
                     '00000000'
                     )
                 })
+            }) // target squares
+            
+            describe("pawns able to move", function() {
+                it("should find white pawns with legal moves", function() {
+                    var myboard = new chess.board
+                    myboard.bitboards.white[0] = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00100000' +
+                        '00000100' +
+                        '00000010' +
+                        '00000000' +
+                        '00010000' +
+                        '01100000' +
+                        '00000000'
+                    )
+                    myboard.whitePawnsAbleToPush().debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000010' + "\n" +
+                        '00000000' + "\n" +
+                        '00010000' + "\n" +
+                        '01100000' + "\n" +
+                        '00000000'
+                    )
+                })
+                it("should find black pawns with legal moves")
             })
         })
     })
