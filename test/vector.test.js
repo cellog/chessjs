@@ -81,10 +81,14 @@ describe("Vector", function() {
             new Vector(7,7).toChessSquare().should.eql('h8')
         })
         it ("should fail on invalid input", function() {
-            should(new Vector(-1,0)).be.isNan
-            should(new Vector(0,-1)).be.isNan
-            should(new Vector(8,0)).be.isNan
-            should(new Vector(0,8)).be.isNan
+            var z = new Vector(-1,0);
+            z.toChessSquare.bind(z).should.throw("Invalid chess square (-1,0)")
+            z.set(0,-1)
+            z.toChessSquare.bind(z).should.throw("Invalid chess square (0,-1)")
+            z.set(8,0)
+            z.toChessSquare.bind(z).should.throw("Invalid chess square (8,0)")
+            z.set(0,8)
+            z.toChessSquare.bind(z).should.throw("Invalid chess square (0,8)")
         })
     })
 
