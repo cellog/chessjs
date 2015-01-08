@@ -16,26 +16,213 @@ describe("Chessboard", function() {
             myboard.bitboards.should.have.ownProperty('black').and.is.instanceof(Array).and.length(6)
         })
 
-        describe("blackpieces", function() {
-            it("should return 0x000000000000ffff", function() {
-                var b = myboard.blackpieces
+        describe("white pawns", function() {
+            it("should return 0x000000000000ff00", function() {
+                var b = myboard.bitboards.white[0]
                 b.should.be.instanceof(chess.bitboard)
-                b.debugString().should.eql(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '11111111' +
-                    '11111111'
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '11111111' + "\n" +
+                    '00000000'
                 )
             })
         })
 
-        describe("whitepieces", function() {
+        describe("black pawns", function() {
+            it("should return 0x000000000000ff00", function() {
+                var b = myboard.bitboards.black[0]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '11111111' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
+
+        describe("white rooks", function() {
+            it("should return 0x0000000000000018", function() {
+                var b = myboard.bitboards.white[1]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '10000001'
+                )
+            })
+        })
+
+        describe("black rooks", function() {
+            it("should return 0x0000000000000018", function() {
+                var b = myboard.bitboards.black[1]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '10000001' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
+
+        describe("white knights", function() {
+            it("should return 0x0000000000000024", function() {
+                var b = myboard.bitboards.white[2]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '01000010'
+                )
+            })
+        })
+
+        describe("black knights", function() {
+            it("should return 0x0000000000000024", function() {
+                var b = myboard.bitboards.black[2]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '01000010' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
+
+        describe("white bishops", function() {
+            it("should return 0x0000000000000042", function() {
+                var b = myboard.bitboards.white[3]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00100100'
+                )
+            })
+        })
+
+        describe("black bishops", function() {
+            it("should return 0x0000000000000042", function() {
+                var b = myboard.bitboards.black[3]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00100100' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
+
+        describe("white queens", function() {
+            it("should return 0x0000000000000010", function() {
+                var b = myboard.bitboards.white[4]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00010000'
+                )
+            })
+        })
+
+        describe("black queens", function() {
+            it("should return 0x0000000000000010", function() {
+                var b = myboard.bitboards.black[4]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00010000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
+
+        describe("white king", function() {
+            it("should return 0x0000000000000008", function() {
+                var b = myboard.bitboards.white[5]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00001000'
+                )
+            })
+        })
+
+        describe("black king", function() {
+            it("should return 0x0000000000000008", function() {
+                var b = myboard.bitboards.black[5]
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00001000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
+
+        describe("blackpieces", function() {
             it("should return 0x000000000000ffff", function() {
-                var b = myboard.whitepieces
+                var b = myboard.blackpieces
                 b.should.be.instanceof(chess.bitboard)
                 b.debugString().should.eql(
                     '11111111' +
@@ -46,6 +233,23 @@ describe("Chessboard", function() {
                     '00000000' +
                     '00000000' +
                     '00000000'
+                )
+            })
+        })
+
+        describe("whitepieces", function() {
+            it("should return 0x000000000000ffff", function() {
+                var b = myboard.whitepieces
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '11111111' + "\n" +
+                    '11111111'
                 )
             })
         })
@@ -86,15 +290,27 @@ describe("Chessboard", function() {
 
         describe("textBoard", function() {
             it("should return a rudimentary chess board", function() {
-                myboard.textBoard.should.eql(
-                    'RNBQKBNR' +
-                    'PPPPPPPP' +
-                    '        ' +
-                    '        ' +
-                    '        ' +
-                    '        ' +
+                myboard.textBoard().should.eql(
+                    'rnbqkbnr' +
                     'pppppppp' +
-                    'rnbqkbnr'
+                    '        ' +
+                    '        ' +
+                    '        ' +
+                    '        ' +
+                    'PPPPPPPP' +
+                    'RNBQKBNR'
+                )
+            })
+            it("test divider", function() {
+                myboard.textBoard("\n").should.eql(
+                    'rnbqkbnr' + "\n" +
+                    'pppppppp' + "\n" +
+                    '        ' + "\n" +
+                    '        ' + "\n" +
+                    '        ' + "\n" +
+                    '        ' + "\n" +
+                    'PPPPPPPP' + "\n" +
+                    'RNBQKBNR'
                 )
             })
         })
@@ -145,15 +361,15 @@ describe("Bitboard", function() {
             myboard.bitboards.white[0].debugString().should
                 .eql(
                     '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
                     '11111111' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
                     '00000000'
                 )
-            new chess.bitboard(0xffff0000,0).debugString().should
+            new chess.bitboard(0x0000ffff,0).debugString().should
                 .eql(
                     '11111111' +
                     '11111111' +
@@ -169,7 +385,7 @@ describe("Bitboard", function() {
     
     describe("toArray", function() {
         it("should return a beautiful array of p", function() {
-            var t = new chess.bitboard(0x00ff0000,0, 'P').toArray();
+            var t = new chess.bitboard(0x0000ff00,0, 'P').toArray();
             t.length.should.eql(64)
             t.should
                 .eql(
@@ -188,22 +404,24 @@ describe("Bitboard", function() {
 
     describe("fromBinary", function() {
         it("should return a correct bitboard", function() {
-            chess.bitboard.fromBinary('00000000' +
-                    '11111111' +
+            chess.bitboard.fromBinary(
+                    '01000000' +
+                    '00100000' +
+                    '00000100' +
+                    '00000010' +
                     '00000000' +
+                    '00010000' +
+                    '01100000' +
+                    '00000010'
+                ).debugString().should.eql(
+                    '01000000' +
+                    '00100000' +
+                    '00000100' +
+                    '00000010' +
                     '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                ).debugString().should.eql('00000000' +
-                    '11111111' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
+                    '00010000' +
+                    '01100000' +
+                    '00000010'
                 )
         })
     })
@@ -211,13 +429,49 @@ describe("Bitboard", function() {
     describe("vertical fill", function() {
         describe("north fill", function() {
             it("should fill northly", function() {
-                "not implemented".should.not.ok
+                chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000100' +
+                    '00000010' +
+                    '00000000' +
+                    '00010000' +
+                    '01100000' +
+                    '00000000'
+                ).northFill().debugString("\n").should.eql(
+                    '01110110' + "\n" +
+                    '01110110' + "\n" +
+                    '01110110' + "\n" +
+                    '01110010' + "\n" +
+                    '01110000' + "\n" +
+                    '01110000' + "\n" +
+                    '01100000' + "\n" +
+                    '00000000'  
+                )
             })
         })
 
         describe("south fill", function() {
             it("should fill southly", function() {
-                "not implemented".should.not.ok
+                chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000100' +
+                    '00000010' +
+                    '00000000' +
+                    '00010000' +
+                    '01100000' +
+                    '00000000'
+                ).southFill().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000110' + "\n" +
+                    '00000110' + "\n" +
+                    '00010110' + "\n" +
+                    '01110110' + "\n" +
+                    '01110110'
+                )
             })
         })
     })
