@@ -15,6 +15,23 @@ describe("Chessboard", function() {
             myboard.bitboards.should.have.ownProperty('white').and.is.instanceof(Array).and.length(6)
             myboard.bitboards.should.have.ownProperty('black').and.is.instanceof(Array).and.length(6)
         })
+
+        describe("whitepieces", function() {
+            it("should return 0x000000000000ffff", function() {
+                var b = myboard.blackpieces
+                b.should.be.instanceof(Long)
+                chess.bitboardString(b).should.eql(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '11111111' +
+                    '11111111'
+                )
+            })
+        })
         
         describe("both", function() {
             it("should return 0xffff00000000ffff", function() {
@@ -32,19 +49,20 @@ describe("Chessboard", function() {
                 )
             })
         })
-        describe("whitepieces", function() {
-            it("should return 0x000000000000ffff", function() {
-                var b = myboard.blackpieces
+        
+        describe("emptysquares", function() {
+            it("should return 0x0000ffffffff0000", function() {
+                var b = myboard.emptysquares
                 b.should.be.instanceof(Long)
                 chess.bitboardString(b).should.eql(
                     '00000000' +
                     '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
                     '11111111' +
-                    '11111111'
+                    '11111111' +
+                    '11111111' +
+                    '11111111' +
+                    '00000000' +
+                    '00000000'
                 )
             })
         })
