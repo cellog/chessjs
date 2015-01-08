@@ -19,7 +19,9 @@
   },
   "devDependencies" : {
     "mocha": "~2.1.0",
-    "should": "~4.4.2"
+    "should": "~4.4.2",
+    "instanbul": "~0.3.5",
+    "mocha-instanbul": "~0.2.0"
   },
   "private": true,
   "keywords": [
