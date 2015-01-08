@@ -14,6 +14,9 @@
     "type": "git",
     "url": "https://github.com/cellog/chessjs.git"
   },
+  "dependencies" : {
+    "long": "~2.2.3"
+  },
   "devDependencies" : {
     "mocha": "~2.1.0",
     "should": "~4.4.2"
