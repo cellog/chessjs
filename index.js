@@ -9,4 +9,5 @@ var bit = chess.bitboard.fromBinary(
                     '11000000' +
                     '00000010'
 )
-console.log(new chess.bitboard(bit.and(new chess.bitboard(0,0xff))).debugString("\n"))
+console.log(bit.debugString("\n"), "\n")
+console.log(bit.northwestOne().debugString("\n"))

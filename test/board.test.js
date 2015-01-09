@@ -754,6 +754,78 @@ describe("Bitboard", function() {
                     '01100000'
                     )
                 })
+                it("east one square", function() {
+                    bitboard.eastOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000010' + "\n" +
+                    '00000001' + "\n" +
+                    '00000000' + "\n" +
+                    '00001000' + "\n" +
+                    '00110000' + "\n" +
+                    '00000000'
+                    )
+                })
+                it("northeast one square", function() {
+                    bitboard.northeastOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000010' + "\n" +
+                    '00000001' + "\n" +
+                    '00000000' + "\n" +
+                    '00001000' + "\n" +
+                    '00110000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
+                it("southeast one square", function() {
+                    bitboard.southeastOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000010' + "\n" +
+                    '00000001' + "\n" +
+                    '00000000' + "\n" +
+                    '00001000' + "\n" +
+                    '00110000'
+                    )
+                })
+                it("west one square", function() {
+                    bitboard.westOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00001000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000000' + "\n" +
+                    '00100000' + "\n" +
+                    '11000000' + "\n" +
+                    '00000000'
+                    )
+                })
+                it("southwest one square", function() {
+                    bitboard.southwestOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00001000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000000' + "\n" +
+                    '00100000' + "\n" +
+                    '11000000'
+                    )
+                })
+                it("northwest one square", function() {
+                    bitboard.northwestOne().debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00001000' + "\n" +
+                    '00000100' + "\n" +
+                    '00000000' + "\n" +
+                    '00100000' + "\n" +
+                    '11000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
             })
 
             describe("target squares", function() {
@@ -877,7 +949,7 @@ describe("Bitboard", function() {
             describe("pawns able to capture", function() {
                 describe("white pawns", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.black[0] = chess.bitboard.fromBinary(
+                    myboard.bitboards.p = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
