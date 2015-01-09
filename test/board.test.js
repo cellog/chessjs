@@ -949,25 +949,58 @@ describe("Bitboard", function() {
             describe("pawns able to capture", function() {
                 describe("white pawns", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.p = chess.bitboard.fromBinary(
+                    myboard.bitboards.P = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
                         '00000010' +
-                        '00000000' +
+                        '00000001' +
                         '00010000' +
-                        '01100000' +
+                        '11100000' +
                         '00000000'
                     )
-                    it("should detect east attacks")
-                    it("should detect west attacks")
-                    it("should detect any attacks")
+                    it("should detect east targets", function() {
+                        myboard.whitePawnEastAttackTargets().debugString("\n").should.eql(
+                        '00010000' + "\n" +
+                        '00000010' + "\n" +
+                        '00000001' + "\n" +
+                        '00000000' + "\n" +
+                        '00001000' + "\n" +
+                        '01110000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000'
+                        )
+                    })
+                    it("should detect west targets", function() {
+                        myboard.whitePawnWestAttackTargets().debugString("\n").should.eql(
+                        '01000000' + "\n" +
+                        '00001000' + "\n" +
+                        '00000100' + "\n" +
+                        '00000010' + "\n" +
+                        '00100000' + "\n" +
+                        '11000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000'
+                        )
+                    })
+                    it("should detect any targets", function() {
+                        myboard.whitePawnAttackTargets().debugString("\n").should.eql(
+                        '01010000' + "\n" +
+                        '00001010' + "\n" +
+                        '00000101' + "\n" +
+                        '00000010' + "\n" +
+                        '00101000' + "\n" +
+                        '11110000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000'
+                        )
+                    })
                 })
 
                 describe("black pawns", function() {
-                    it("should detect east attacks")
-                    it("should detect west attacks")
-                    it("should detect any attacks")
+                    it("should detect east targets")
+                    it("should detect west targets")
+                    it("should detect any targets")
                 })
             })
         })
