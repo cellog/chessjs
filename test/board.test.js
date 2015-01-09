@@ -998,9 +998,53 @@ describe("Bitboard", function() {
                 })
 
                 describe("black pawns", function() {
-                    it("should detect east targets")
-                    it("should detect west targets")
-                    it("should detect any targets")
+                    var myboard = new chess.board
+                    myboard.bitboards.p = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00100000' +
+                        '00000100' +
+                        '00000010' +
+                        '00000001' +
+                        '00010000' +
+                        '11100000' +
+                        '00000000'
+                    )
+                    it("should detect east targets", function() {
+                        myboard.blackPawnEastAttackTargets().debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00010000' + "\n" +
+                        '00000010' + "\n" +
+                        '00000001' + "\n" +
+                        '00000000' + "\n" +
+                        '00001000' + "\n" +
+                        '01110000'
+                        )
+                    })
+                    it("should detect west targets", function() {
+                        myboard.blackPawnWestAttackTargets().debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '01000000' + "\n" +
+                        '00001000' + "\n" +
+                        '00000100' + "\n" +
+                        '00000010' + "\n" +
+                        '00100000' + "\n" +
+                        '11000000'
+                        )
+                    })
+                    it("should detect any targets", function() {
+                        myboard.blackPawnAttackTargets().debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '01010000' + "\n" +
+                        '00001010' + "\n" +
+                        '00000101' + "\n" +
+                        '00000010' + "\n" +
+                        '00101000' + "\n" +
+                        '11110000'
+                        )
+                    })
                 })
             })
         })
