@@ -636,6 +636,12 @@ describe("Bitboard", function() {
                     it("should detect west attacks")
                     it("should detect any attacks")
                 })
+
+                describe("black pawns", function() {
+                    it("should detect east attacks")
+                    it("should detect west attacks")
+                    it("should detect any attacks")
+                })
             })
         })
     })
