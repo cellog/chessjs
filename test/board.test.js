@@ -1045,8 +1045,14 @@ describe("Bitboard", function() {
                         '11110000'
                         )
                     })
-                })
-            })
-        })
+                }) // black pawns
+            }) // pawns able to capture
+        }) // pawn pushes
+    }) // pawn moves
+    
+    describe("knight moves", function() {
+        it("should have correct corners")
+        it("should have correct sides")
+        it("should have correct centers")
     })
-})
+}) // Bitboard
