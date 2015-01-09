@@ -16,6 +16,39 @@ describe("Chessboard", function() {
             myboard.bitboards.should.have.ownProperty('black').and.is.instanceof(Array).and.length(6)
         })
 
+        describe("setters", function() {
+            var bit = chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00100000' +
+                '00001000' +
+                '00000010' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ), myboard
+            before(function() {
+                myboard = new chess.board
+            })
+            describe("white", function() {
+                it("should set pawn bitboard")
+                it("should set rook bitboard")
+                it("should set knight bitboard")
+                it("should set bishop bitboard")
+                it("should set queen bitboard")
+                it("should set king bitboard")
+            })
+            
+            describe("black", function() {
+                it("should set pawn bitboard")
+                it("should set rook bitboard")
+                it("should set knight bitboard")
+                it("should set bishop bitboard")
+                it("should set queen bitboard")
+                it("should set king bitboard")
+            })
+        })
+
         describe("white pawns", function() {
             it("should return 0x000000000000ff00", function() {
                 var b = myboard.bitboards.white[0]
@@ -30,6 +63,7 @@ describe("Chessboard", function() {
                     '11111111' + "\n" +
                     '00000000'
                 )
+                b.should.be.equal(myboard.bitboards.P)
             })
         })
 
@@ -47,6 +81,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00000000'
                 )
+                b.should.be.equal(myboard.bitboards.p)
             })
         })
 
@@ -64,6 +99,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '10000001'
                 )
+                b.should.be.equal(myboard.bitboards.R)
             })
         })
 
@@ -81,6 +117,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00000000'
                 )
+                b.should.be.equal(myboard.bitboards.r)
             })
         })
 
@@ -98,6 +135,8 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '01000010'
                 )
+                b.should.be.equal(myboard.bitboards.N)
+
             })
         })
 
@@ -115,6 +154,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00000000'
                 )
+                b.should.be.equal(myboard.bitboards.n)
             })
         })
 
@@ -132,6 +172,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00100100'
                 )
+                b.should.be.equal(myboard.bitboards.B)
             })
         })
 
@@ -149,6 +190,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00000000'
                 )
+                b.should.be.equal(myboard.bitboards.b)
             })
         })
 
@@ -166,6 +208,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00010000'
                 )
+                b.should.be.equal(myboard.bitboards.Q)
             })
         })
 
@@ -183,6 +226,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00000000'
                 )
+                b.should.be.equal(myboard.bitboards.q)
             })
         })
 
@@ -200,6 +244,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00001000'
                 )
+                b.should.be.equal(myboard.bitboards.K)
             })
         })
 
@@ -217,6 +262,7 @@ describe("Chessboard", function() {
                     '00000000' + "\n" +
                     '00000000'
                 )
+                b.should.be.equal(myboard.bitboards.k)
             })
         })
 
@@ -383,7 +429,7 @@ describe("Bitboard", function() {
     });
     describe("debugString", function() {
         it("should return binary string representation for debugging", function() {
-            myboard.bitboards.white[0].debugString().should
+            myboard.bitboards.P.debugString().should
                 .eql(
                     '00000000' +
                     '00000000' +
@@ -515,7 +561,7 @@ describe("Bitboard", function() {
             describe("target squares", function() {
                 it("white", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.white[0] = bitboard
+                    myboard.bitboards.P = bitboard
                     myboard.whitePawnPushTargets().debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -529,7 +575,7 @@ describe("Bitboard", function() {
                 })
                 it("white double", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.white[0] = bitboard
+                    myboard.bitboards.P = bitboard
                     myboard.whiteDoublePawnPushTargets().debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -544,7 +590,7 @@ describe("Bitboard", function() {
                 
                 it("black", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.black[0] = bitboard
+                    myboard.bitboards.p = bitboard
                     myboard.blackPawnPushTargets().debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -558,7 +604,7 @@ describe("Bitboard", function() {
                 })
                 it("black double", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.black[0] = chess.bitboard.fromBinary(
+                    myboard.bitboards.p = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -584,7 +630,7 @@ describe("Bitboard", function() {
             describe("pawns able to move", function() {
                 it("should find white pawns with legal moves", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.white[0] = chess.bitboard.fromBinary(
+                    myboard.bitboards.P = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -607,7 +653,7 @@ describe("Bitboard", function() {
                 })
                 it("should find black pawns with legal moves", function() {
                     var myboard = new chess.board
-                    myboard.bitboards.black[0] = chess.bitboard.fromBinary(
+                    myboard.bitboards.p = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -632,6 +678,17 @@ describe("Bitboard", function() {
             
             describe("pawns able to capture", function() {
                 describe("white pawns", function() {
+                    var myboard = new chess.board
+                    myboard.bitboards.black[0] = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00100000' +
+                        '00000100' +
+                        '00000010' +
+                        '00000000' +
+                        '00010000' +
+                        '01100000' +
+                        '00000000'
+                    )
                     it("should detect east attacks")
                     it("should detect west attacks")
                     it("should detect any attacks")
