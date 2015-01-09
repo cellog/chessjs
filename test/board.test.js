@@ -629,6 +629,14 @@ describe("Bitboard", function() {
                     )
                 })
             })
+            
+            describe("pawns able to capture", function() {
+                describe("white pawns", function() {
+                    it("should detect east attacks")
+                    it("should detect west attacks")
+                    it("should detect any attacks")
+                })
+            })
         })
     })
 })
