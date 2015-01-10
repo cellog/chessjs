@@ -10,14 +10,14 @@ var bit = chess.bitboard.fromBinary(
                     '00000000' +
                     '00000000'
 ),empty = chess.bitboard.fromBinary(
-                    '00011110' +
-                    '00010001' +
-                    '11101011' +
-                    '00000011' +
-                    '01011000' +
-                    '11110111' +
-                    '00001011' +
-                    '00001011'
+                    '01000000' +
+                    '10000010' +
+                    '01100100' +
+                    '00101001' +
+                    '01010100' +
+                    '00100110' +
+                    '01000001' +
+                    '10010000'
                 )
 console.log(bit.debugString("\n"), "\n")
-console.log(bit.rookMoves(empty).debugString("\n"))
+console.log(bit.bishopMoves(empty).debugString("\n"))
