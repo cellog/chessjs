@@ -16,6 +16,15 @@ describe("Bitboard", function() {
                     '00010000' +
                     '01100000' +
                     '00000000'
+                ), emptyboard = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '11111111' +
+                    '11111111' +
+                    '11111111' +
+                    '11111111' +
+                    '00000000' +
+                    '00000000'
                 );
     
     before(function() {
@@ -81,6 +90,36 @@ describe("Bitboard", function() {
                     '11111100' + "\n" +
                     '11111100' + "\n" +
                     '11111100'
+                )
+        })
+        it("rank4", function() {
+            var c = new chess.bitboard()
+            c.rank4.should.eql({l: 0, h: 0xff,piece: 'X'})
+            c.rank4
+                .debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '11111111' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+        })
+        it("rank5", function() {
+            var c = new chess.bitboard()
+            c.rank5.should.eql({l: 0xff000000>>>0, h: 0, piece: 'X'})
+            c.rank5
+                .debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '11111111' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
                 )
         })
     })
@@ -305,9 +344,7 @@ describe("Bitboard", function() {
 
             describe("target squares", function() {
                 it("white", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.P = bitboard
-                    myboard.whitePawnPushTargets().debugString("\n").should.eql(
+                    bitboard.pawnSingleMoves(emptyboard, true).debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
                     '00000010' + "\n" +
@@ -319,9 +356,7 @@ describe("Bitboard", function() {
                     )
                 })
                 it("white double", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.P = bitboard
-                    myboard.whiteDoublePawnPushTargets().debugString("\n").should.eql(
+                    bitboard.pawnDoubleMoves(emptyboard, true).debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -334,9 +369,7 @@ describe("Bitboard", function() {
                 })
                 
                 it("black", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.p = bitboard
-                    myboard.blackPawnPushTargets().debugString("\n").should.eql(
+                    bitboard.pawnSingleMoves(emptyboard).debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -348,8 +381,7 @@ describe("Bitboard", function() {
                     )
                 })
                 it("black double", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.p = chess.bitboard.fromBinary(
+                    var bit = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -359,7 +391,7 @@ describe("Bitboard", function() {
                         '01100000' +
                         '00000000'
                     )
-                    myboard.blackDoublePawnPushTargets().debugString("\n").should.eql(
+                    bit.pawnDoubleMoves(emptyboard).debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
                     '00000000' + "\n" +
@@ -374,8 +406,7 @@ describe("Bitboard", function() {
             
             describe("pawns able to move", function() {
                 it("should find white pawns with legal moves", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.P = chess.bitboard.fromBinary(
+                    var bit = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -385,7 +416,7 @@ describe("Bitboard", function() {
                         '01100000' +
                         '00000000'
                     )
-                    myboard.whitePawnsAbleToPush().debugString("\n").should.eql(
+                    bit.pushablePawns(emptyboard, true).debugString("\n").should.eql(
                         '00000000' + "\n" +
                         '00000000' + "\n" +
                         '00000000' + "\n" +
@@ -397,8 +428,7 @@ describe("Bitboard", function() {
                     )
                 })
                 it("should find black pawns with legal moves", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.p = chess.bitboard.fromBinary(
+                    var bit = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -408,7 +438,7 @@ describe("Bitboard", function() {
                         '01100000' +
                         '00000000'
                     )
-                    myboard.blackPawnsAbleToPush().debugString("\n").should.eql(
+                    bit.pushablePawns(emptyboard).debugString("\n").should.eql(
                         '00000000' + "\n" +
                         '00100000' + "\n" +
                         '00000100' + "\n" +
@@ -420,11 +450,12 @@ describe("Bitboard", function() {
                     )
                 })
             })
-            
+        }) // pawn pushes
+        
+        describe("pawn captures", function() {            
             describe("pawns able to capture", function() {
                 describe("white pawns", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.P = chess.bitboard.fromBinary(
+                    var bit = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -434,32 +465,8 @@ describe("Bitboard", function() {
                         '11100000' +
                         '00000000'
                     )
-                    it("should detect east targets", function() {
-                        myboard.whitePawnEastAttackTargets().debugString("\n").should.eql(
-                        '00010000' + "\n" +
-                        '00000010' + "\n" +
-                        '00000001' + "\n" +
-                        '00000000' + "\n" +
-                        '00001000' + "\n" +
-                        '01110000' + "\n" +
-                        '00000000' + "\n" +
-                        '00000000'
-                        )
-                    })
-                    it("should detect west targets", function() {
-                        myboard.whitePawnWestAttackTargets().debugString("\n").should.eql(
-                        '01000000' + "\n" +
-                        '00001000' + "\n" +
-                        '00000100' + "\n" +
-                        '00000010' + "\n" +
-                        '00100000' + "\n" +
-                        '11000000' + "\n" +
-                        '00000000' + "\n" +
-                        '00000000'
-                        )
-                    })
-                    it("should detect any targets", function() {
-                        myboard.whitePawnAttackTargets().debugString("\n").should.eql(
+                    it("should detect white targets", function() {
+                        bit.pawnAttackTargets(true).debugString("\n").should.eql(
                         '01010000' + "\n" +
                         '00001010' + "\n" +
                         '00000101' + "\n" +
@@ -473,8 +480,7 @@ describe("Bitboard", function() {
                 })
 
                 describe("black pawns", function() {
-                    var myboard = new chess.board
-                    myboard.bitboards.p = chess.bitboard.fromBinary(
+                    var bit = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
                         '00000100' +
@@ -484,32 +490,8 @@ describe("Bitboard", function() {
                         '11100000' +
                         '00000000'
                     )
-                    it("should detect east targets", function() {
-                        myboard.blackPawnEastAttackTargets().debugString("\n").should.eql(
-                        '00000000' + "\n" +
-                        '00000000' + "\n" +
-                        '00010000' + "\n" +
-                        '00000010' + "\n" +
-                        '00000001' + "\n" +
-                        '00000000' + "\n" +
-                        '00001000' + "\n" +
-                        '01110000'
-                        )
-                    })
-                    it("should detect west targets", function() {
-                        myboard.blackPawnWestAttackTargets().debugString("\n").should.eql(
-                        '00000000' + "\n" +
-                        '00000000' + "\n" +
-                        '01000000' + "\n" +
-                        '00001000' + "\n" +
-                        '00000100' + "\n" +
-                        '00000010' + "\n" +
-                        '00100000' + "\n" +
-                        '11000000'
-                        )
-                    })
-                    it("should detect any targets", function() {
-                        myboard.blackPawnAttackTargets().debugString("\n").should.eql(
+                    it("should detect black targets", function() {
+                        bit.pawnAttackTargets().debugString("\n").should.eql(
                         '00000000' + "\n" +
                         '00000000' + "\n" +
                         '01010000' + "\n" +
@@ -522,7 +504,166 @@ describe("Bitboard", function() {
                     })
                 }) // black pawns
             }) // pawns able to capture
-        }) // pawn pushes
+            describe("pawns that are attacking enemy pieces", function() {
+                it("white pawns", function() {
+                    var bit = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00100000' +
+                        '00000100' +
+                        '00000010' +
+                        '00000001' +
+                        '00010000' +
+                        '11100000' +
+                        '00000000'
+                    ),
+                    enemies = chess.bitboard.fromBinary(
+                        '01000000' +
+                        '00101110' +
+                        '00000000' +
+                        '00000000' +
+                        '00100000' +
+                        '00000000' +
+                        '00000000' +
+                        '00000000'
+                    )
+                    it("should detect white pawns with targets", function() {
+                        bit.attackingPawns(enemies, true).debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00100000' + "\n" +
+                        '00000100' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00010000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000'
+                        )
+                    })
+                })
+                it.only("black pawns", function() {
+                    var bit = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00100000' +
+                        '00000100' +
+                        '00000010' +
+                        '00000001' +
+                        '00010000' +
+                        '11100000' +
+                        '00000000'
+                    ),
+                    enemies = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00000000' +
+                        '01000000' +
+                        '00000000' +
+                        '00100000' +
+                        '00000010' +
+                        '00000000' +
+                        '01000000'
+                    )
+                    it("should detect black targets", function() {
+                        bit.attackingPawns(enemies).debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00100000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000001' + "\n" +
+                        '00000000' + "\n" +
+                        '10100000' + "\n" +
+                        '00000000'
+                        )
+                    })
+                })
+            }) // pawns
+        }) // pawn captures
+        describe("all pawn moves and captures", function() {
+            describe("white pawns", function() {
+                var bit = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00100000' +
+                    '00000100' +
+                    '00000010' +
+                    '00000001' +
+                    '00010000' +
+                    '11100000' +
+                    '00000000'
+                ),
+                enemies = chess.bitboard.fromBinary(
+                    '01000000' +
+                    '00001110' +
+                    '00000000' +
+                    '00000000' +
+                    '00100000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                ),
+                empty = chess.bitboard.fromBinary(
+                    '01000000' +
+                    '00101110' +
+                    '00000100' +
+                    '00000010' +
+                    '00100001' +
+                    '00010000' +
+                    '11100000' +
+                    '00000000'
+                ).not()
+                it("should detect white pawn moves and possible attacks", function() {
+                    bit.pawnMoves(empty, enemies, true).debugString("\n").should.eql(
+                    '01100000' + "\n" +
+                    '00001010' + "\n" +
+                    '00000010' + "\n" +
+                    '00000001' + "\n" +
+                    '11110000' + "\n" +
+                    '11100000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                    )
+                })
+            })
+            describe("black pawns", function() {
+                var bit = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00100000' +
+                    '00000100' +
+                    '00000010' +
+                    '00000001' +
+                    '00010000' +
+                    '11100000' +
+                    '00000000'
+                ),
+                enemies = chess.bitboard.fromBinary(
+                    '01000000' +
+                    '00001110' +
+                    '00010000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                ),
+                empty = chess.bitboard.fromBinary(
+                    '01000000' +
+                    '00101110' +
+                    '00000100' +
+                    '00000010' +
+                    '00100001' +
+                    '00010000' +
+                    '11100000' +
+                    '00000000'
+                ).not()
+                it.only("should detect black moves and possible attacks", function() {
+                    bit.pawnMoves(empty, enemies, true).debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00110100' + "\n" +
+                    '00100010' + "\n" +
+                    '00000001' + "\n" +
+                    '00010000' + "\n" +
+                    '11100000'
+                    )
+                })
+            })
+        })
     }) // pawn moves
     
     describe("knight moves", function() {
@@ -971,35 +1112,45 @@ describe("Bitboard", function() {
             )
         })
         it("should have correct queen moves", function() {
-                var queen = chess.bitboard.fromBinary(
-                    '00000001' +
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00000010' +
-                    '00001000' +
-                    '00000000' +
-                    '00000000'
-                ), empty = chess.bitboard.fromBinary(
-                    '11111110' +
-                    '10000011' +
-                    '01100101' +
-                    '00101001' +
-                    '01010100' +
-                    '00100110' +
-                    '01000001' +
-                    '10010000'
-                )
-                queen.queenMoves(empty).debugString("\n").should.eql(
-                    '11111110' + "\n" +
-                    '10000011' + "\n" +
-                    '01100101' + "\n" +
-                    '00101001' + "\n" +
-                    '01010100' + "\n" +
-                    '00100110' + "\n" +
-                    '01000001' + "\n" +
-                    '10000000'
-                )
+            var queen = chess.bitboard.fromBinary(
+                '00000001' +
+                '00000000' +
+                '00010000' +
+                '00000000' +
+                '00000010' +
+                '00001000' +
+                '00000000' +
+                '00000000'
+            ), empty = chess.bitboard.fromBinary(
+                '11111110' +
+                '10000011' +
+                '01100101' +
+                '00101001' +
+                '01010100' +
+                '00100110' +
+                '01000001' +
+                '10010000'
+            )
+            queen.queenMoves(empty).debugString("\n").should.eql(
+                '11111110' + "\n" +
+                '10000011' + "\n" +
+                '01100101' + "\n" +
+                '00101001' + "\n" +
+                '01010100' + "\n" +
+                '00100110' + "\n" +
+                '01000001' + "\n" +
+                '10000000'
+            )
+        })
+        describe("attack bitboards", function() {
+            describe("king", function() {
             })
-    })
+            describe("queen", function() {
+            })
+            describe("rook", function() {
+            })
+            describe("bishop", function() {
+            })
+        }) // attack bitboards
+    }) // sliding piece moves
 }) // Bitboard
