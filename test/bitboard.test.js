@@ -721,8 +721,68 @@ describe("Bitboard", function() {
                     '01000000'
                 )
             })
-            it("should fill left with occlusion")
-            it("should fill right with occlusion")
+            it("should fill e with occlusion", function() {
+                var rook = chess.bitboard.fromBinary(
+                    '10000000' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000010' +
+                    '00001000' +
+                    '00000000' +
+                    '00000000'
+                ), empty = chess.bitboard.fromBinary(
+                    '01111111' +
+                    '00000000' +
+                    '00000111' +
+                    '00000000' +
+                    '00000001' +
+                    '00000101' +
+                    '00000000' +
+                    '00000000'
+                )
+                rook.fillEastOcclusion(empty).debugString("\n").should.eql(
+                    '11111111' + "\n" +
+                    '00000000' + "\n" +
+                    '00010000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000011' + "\n" +
+                    '00001100' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+            it("should fill w with occlusion", function() {
+                var rook = chess.bitboard.fromBinary(
+                    '00000001' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000010' +
+                    '00001000' +
+                    '00000000' +
+                    '00000000'
+                ), empty = chess.bitboard.fromBinary(
+                    '11111110' +
+                    '00000000' +
+                    '01100000' +
+                    '00000000' +
+                    '01011000' +
+                    '11110000' +
+                    '00000000' +
+                    '00000000'
+                )
+                rook.fillWestOcclusion(empty).debugString("\n").should.eql(
+                    '11111111' + "\n" +
+                    '00000000' + "\n" +
+                    '01110000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000010' + "\n" +
+                    '11111000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
             it("should fill ne with occlusion")
             it("should fill nw with occlusion")
             it("should fill se with occlusion")
@@ -790,6 +850,102 @@ describe("Bitboard", function() {
                     '01000000' + "\n" +
                     '01001000' + "\n" +
                     '01000000'
+                )
+            })
+
+            it("should have correct east moves", function() {
+                var rook = chess.bitboard.fromBinary(
+                    '10000000' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000010' +
+                    '00001000' +
+                    '00000000' +
+                    '00000000'
+                ), empty = chess.bitboard.fromBinary(
+                    '01111111' +
+                    '00000000' +
+                    '00000111' +
+                    '00000000' +
+                    '00000001' +
+                    '00000101' +
+                    '00000000' +
+                    '00000000'
+                )
+                rook.rookMovesEast(empty).debugString("\n").should.eql(
+                    '01111111' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000001' + "\n" +
+                    '00000100' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+            
+            it("should have correct west moves", function() {
+                var rook = chess.bitboard.fromBinary(
+                    '00000001' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000010' +
+                    '00001000' +
+                    '00000000' +
+                    '00000000'
+                ), empty = chess.bitboard.fromBinary(
+                    '11111110' +
+                    '00000000' +
+                    '01100000' +
+                    '00000000' +
+                    '01011000' +
+                    '11110000' +
+                    '00000000' +
+                    '00000000'
+                )
+                rook.rookMovesWest(empty).debugString("\n").should.eql(
+                    '11111110' + "\n" +
+                    '00000000' + "\n" +
+                    '01100000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '11110000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+            
+            it("should have correct rook moves", function() {
+                var rook = chess.bitboard.fromBinary(
+                    '00000001' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000010' +
+                    '00001000' +
+                    '00000000' +
+                    '00000000'
+                ), empty = chess.bitboard.fromBinary(
+                    '00011110' +
+                    '00010001' +
+                    '11101011' +
+                    '00000011' +
+                    '01011000' +
+                    '11110111' +
+                    '00001011' +
+                    '00001011'
+                )
+                rook.rookMoves(empty).debugString("\n").should.eql(
+                    '00011110' + "\n" +
+                    '00010001' + "\n" +
+                    '11101011' + "\n" +
+                    '00000011' + "\n" +
+                    '00001000' + "\n" +
+                    '11110111' + "\n" +
+                    '00001010' + "\n" +
+                    '00001010'
                 )
             })
         })
