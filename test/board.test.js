@@ -625,6 +625,21 @@ describe("Bitboard", function() {
     before(function() {
         myboard = new chess.board;
     });
+    describe("or", function() {
+        it("should combine a value with a bitboard", function() {
+            bitboard.or(0xff).debugString("\n").should.eql(
+                '11111111' + "\n" +
+                '00000000' + "\n" +
+                '00000100' + "\n" +
+                '00000010' + "\n" +
+                '11111111' + "\n" +
+                '00010000' + "\n" +
+                '01100000' + "\n" +
+                '00000000'
+            )
+        })
+    })
+
     describe("debugString", function() {
         it("should return binary string representation for debugging", function() {
             myboard.bitboards.P.debugString().should
