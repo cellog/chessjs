@@ -656,4 +656,20 @@ describe("Bitboard", function() {
                 )
         })
     }) // king moves
+
+    describe("sliding piece moves", function() {
+        describe("occluded fills", function() {
+            it("should fill up with occlusion")
+            it("should fill down with occlusion")
+            it("should fill left with occlusion")
+            it("should fill right with occlusion")
+            it("should fill ne with occlusion")
+            it("should fill nw with occlusion")
+            it("should fill se with occlusion")
+            it("should fill sw with occlusion")
+        })
+        it("should have correct rook moves")
+        it("should have correct bishop moves")
+        it("should have correct queen moves")
+    })
 }) // Bitboard

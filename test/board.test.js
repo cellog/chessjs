@@ -601,5 +601,4 @@ describe("Chessboard", function() {
             myboard.toIndex.bind(null, 89).should.throw('Invalid input "89"')
         })
     })
-
 })
