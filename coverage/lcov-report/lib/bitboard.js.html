@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for lib/board.js</title>
+    <title>Code coverage report for lib/bitboard.js</title>
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../prettify.css">
@@ -196,23 +196,23 @@
 </head>
 <body>
 <div class="header high">
-    <h1>Code coverage report for <span class="entity">lib/board.js</span></h1>
+    <h1>Code coverage report for <span class="entity">lib/bitboard.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(102 / 102)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(68 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">100% <small>(20 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(51 / 51)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(28 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(101 / 101)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(68 / 68)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">lib/</a> &#187; board.js</div>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">lib/</a> &#187; bitboard.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -363,493 +363,301 @@
 145
 146
 147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+148</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">452</span>
+<span class="cline-any cline-yes">452</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">421</span>
+<span class="cline-any cline-yes">421</span>
+<span class="cline-any cline-yes">421</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-yes">14</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">7</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-yes">115</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">101</span>
+<span class="cline-any cline-yes">59</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">64</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">64</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">8</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">88</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">136</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11</span>
-<span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">36</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">192</span>
-<span class="cline-any cline-yes">21</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">192</span>
-<span class="cline-any cline-yes">2304</span>
-<span class="cline-any cline-yes">2208</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">64</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var chess = exports,
-    Bitboard = require('./bitboard.js')
-chess.board = board
-chess.bitboard = Bitboard
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">module.exports = Bitboard
 &nbsp;
-var Pawn = 0,
-    Rook = 1,
-    Knight = 2,
-    Bishop = 3,
-    Queen = 4,
-    King = 5,
-    All = 6,
-    rank4 = new Bitboard(0,0xff),
-    rank5 = new Bitboard(0xff000000)
+var notAFile = 0x7f7f7f7f&gt;&gt;&gt;0,
+    notHFile = 0xfefefefe&gt;&gt;&gt;0,
+    notABFile = 0x3f3f3f3f&gt;&gt;&gt;0,
+    notGHFile = 0xfcfcfcfc&gt;&gt;&gt;0
 &nbsp;
-function board(setup) {
- this.bitboards = {
-  white: [
-   new Bitboard(0x00000000,0x00ff0000, 'P'), // white pawns
-   new Bitboard(0x00000000,0x81000000, 'R'), // white rooks
-   new Bitboard(0x00000000,0x42000000, 'N'), // white knights
-   new Bitboard(0x00000000,0x24000000, 'B'), // white bishops
-   new Bitboard(0x00000000,0x10000000, 'Q'), // white queens
-   new Bitboard(0x00000000,0x08000000, 'K'), // white king
-  ],
-  black: [
-   new Bitboard(0x0000ff00,0x00000000, 'p'), // black pawns
-   new Bitboard(0x00000081,0x00000000, 'r'), // black rooks
-   new Bitboard(0x00000042,0x00000000, 'n'), // black knights
-   new Bitboard(0x00000024,0x00000000, 'b'), // black bishops
-   new Bitboard(0x00000010,0x00000000, 'q'), // black queens
-   new Bitboard(0x00000008,0x00000000, 'k'), // black king
-  ],
-  cache: {
-   empty: null,
-   both: null,
-   white: null,
-   black: null
-  },
-  get p() {return this.black[0]},
-  get P() {return this.white[0]},
-  get r() {return this.black[1]},
-  get R() {return this.white[1]},
-  get n() {return this.black[2]},
-  get N() {return this.white[2]},
-  get b() {return this.black[3]},
-  get B() {return this.white[3]},
-  get q() {return this.black[4]},
-  get Q() {return this.white[4]},
-  get k() {return this.black[5]},
-  get K() {return this.white[5]},
-&nbsp;
-  set p(t) {this.black[0] = new Bitboard(t, 'p')},
-  set P(t) {this.white[0] = new Bitboard(t, 'P')},
-  set r(t) {this.black[1] = new Bitboard(t, 'r')},
-  set R(t) {this.white[1] = new Bitboard(t, 'R')},
-  set n(t) {this.black[2] = new Bitboard(t, 'n')},
-  set N(t) {this.white[2] = new Bitboard(t, 'N')},
-  set b(t) {this.black[3] = new Bitboard(t, 'b')},
-  set B(t) {this.white[3] = new Bitboard(t, 'B')},
-  set q(t) {this.black[4] = new Bitboard(t, 'q')},
-  set Q(t) {this.white[4] = new Bitboard(t, 'Q')},
-  set k(t) {this.black[5] = new Bitboard(t, 'k')},
-  set K(t) {this.white[5] = new Bitboard(t, 'K')},
+function Bitboard() {
+ var ret
+ if (arguments[0] &amp;&amp; arguments[0] instanceof Bitboard) {
+  this.l = arguments[0].l|0
+  this.h = arguments[0].h|0
+  this.piece = arguments[1] || arguments[0].piece
+ } else {
+  this.l = arguments[0]|0
+  this.h = arguments[1]|0
+  this.piece = arguments[2] || 'X'
  }
 }
 &nbsp;
-board.prototype.toIndex = function(square) {
- square = square.toString()
- if (square.length != 2 || !square.match(/[a-h][1-8]/)) {
-  throw new Error("Invalid input \"" + square + "\"");
- }
- return square.toLowerCase().charCodeAt(0) - 97 + (square.charCodeAt(1) - 49)*8
+Bitboard.fromBinary = function(bin, piece) {
+ var high = parseInt(bin.slice(0,32), 2), low = parseInt(bin.slice(-32), 2),
+     // flip the board so a1 is in the lower right
+     flip = Bitboard.verticalFlip(low, high)
+ high = flip.high
+ low = flip.low
+ return new Bitboard(low, high, piece)
 }
 &nbsp;
-board.prototype.squareName = function(index) {
- var file = index % 8,
-     rank = Math.floor(index / 8)
- return String.fromCharCode(file + 97) + String.fromCharCode(rank + 49)
+Bitboard.verticalFlip = function (low, high) {
+ var newhigh = 0, newlow = 0
+ // swap 1st/8th
+ newhigh |= low &lt;&lt; 24
+ newlow  |= high &gt;&gt;&gt; 24
+ // swap 2nd/7th
+ newhigh |= low &lt;&lt; 8 &amp; 0x00ff0000
+ newlow  |= high &gt;&gt;&gt; 8 &amp; 0xff00
+ // swap 3rd/6th
+ newhigh |= low &gt;&gt;&gt; 8 &amp; 0x00ff00
+ newlow  |= high &lt;&lt; 8 &amp; 0xff0000
+ // swap 4th/5th
+ newhigh |= low &gt;&gt;&gt; 24
+ newlow |= high &lt;&lt; 24
+ return {high: newhigh, low: newlow}
 }
+Bitboard.prototype = {
+ get notAFile() { return notAFile },
+ get notHFile() { return notHFile },
+ get notABFile() { return notABFile },
+ get notGHFile() { return  notGHFile },
 &nbsp;
-Object.defineProperty(board.prototype, 'whitepieces', {
- enumerable: false,
- get: function() {
-  if (!!this.bitboards.cache.white) {
-   return this.bitboards.cache.white
+ debugString: function(divider) {
+  var upper = this.l,
+      lower = this.h,
+      pad = '00000000',
+      // flip the board so a1 is in the lower right
+      flip = Bitboard.verticalFlip(lower, upper)
+  lower = flip.low
+  upper = flip.high
+  lower = (lower &gt;&gt;&gt; 0).toString(2)
+  upper = (upper &gt;&gt;&gt; 0).toString(2)
+  pad += pad
+  pad += pad
+  var thing = (pad + lower).slice(-32) + (pad + upper).slice(-32)
+  if (divider) {
+   return thing.match(/.{8}/g).join(divider)
   }
-  return this.bitboards.cache.white = new Bitboard(this.bitboards.white.reduce(function(total, val) {
-   return total.orB(val)
-  }))
+  return thing
+ },
+ toArray: function() {
+  return this.debugString().replace(/0/g, ' ').replace(/1/g, this.piece).split('')
+ },
+ southFill: function() {
+  var l1 = this.shl(8).orB(this),
+      l2 = l1.shl(16).orB(l1)
+  return l2.orB({l:0, h:l2.l})
+ },
+ northFill: function() {
+  var l1 = this.shr(8).orB(this),
+      l2 = l1.shr(16).orB(l1)
+  return l2.orB({l:l2.h, h:0})
+ },
+ southOne: function() {
+  return this.shl(8)
+ },
+ northOne: function() {
+  return this.shr(8)
+ },
+ westOne: function() {
+  return this.shl(1).and(notHFile)
+ },
+ northwestOne: function() {
+  return this.shr(7).and(notHFile)
+ },
+ southwestOne: function() {
+  return this.shl(9).and(notHFile)
+ },
+ eastOne: function() {
+  return this.shr(1).and(notAFile)
+ },
+ northeastOne: function() {
+  return this.shr(9).and(notAFile)
+ },
+ southeastOne: function() {
+  return this.shl(7).and(notAFile)
+ },
+&nbsp;
+ shl: function(b) {
+  return new Bitboard(this.l &lt;&lt; b, (this.h &lt;&lt; b) | (this.l &gt;&gt;&gt; 32-b), this.piece)
+ },
+ shr: function(b) {
+  return new Bitboard((this.l &gt;&gt;&gt; b) | (this.h &lt;&lt; (32-b)), this.h &gt;&gt;&gt; b, this.piece)
+ },
+ and: function(a) {
+  return new Bitboard(this.l &amp; a, this.h &amp; a, this.piece)
+ },
+ andB: function(a) {
+  return new Bitboard((this.l &amp; a.l) &gt;&gt;&gt; 0, (this.h &amp; a.h) &gt;&gt;&gt; 0, this.piece)
+ },
+ or: function(a) {
+  return new Bitboard(this.l | a, this.h | a, this.piece)
+ },
+ orB: function(a) {
+  return new Bitboard(this.l | a.l, this.h | a.h, this.piece)
+ },
+ not: function() {
+  return new Bitboard(~this.l &gt;&gt;&gt; 0, ~this.h &gt;&gt;&gt; 0, this.piece)
+ },
+ knightJumps: function() {
+  var m = this
+      l1 = m.shr(1).and(notAFile),
+      l2 = m.shr(2).and(notABFile),
+      r1 = m.shl(1).and(notHFile),
+      r2 = m.shl(2).and(notGHFile),
+      h1 = l1.orB(r1),
+      h2 = l2.orB(r2),
+      res = h1.shl(16).orB(h1.shr(16)).orB(h2.shl(8)).orB(h2.shr(8))
+  
+  return new Bitboard(res.l, res.h, this.piece)
+ },
+ kingMoves: function() {
+  var m = this,
+      h = m.shr(1).and(notAFile).orB(m.shl(1)).and(notHFile),
+      v = m.shl(8).orB(m.shr(8)),
+      res = h.shl(8).orB(h).orB(h.shr(8)).orB(v)
+  return new Bitboard(res.l, res.h, this.piece)
  }
-})
-&nbsp;
-Object.defineProperty(board.prototype, 'blackpieces', {
- enumerable: false,
- get: function() {
-  if (!!this.bitboards.cache.black) {
-   return this.bitboards.cache.black
-  }
-  return this.bitboards.cache.black = new Bitboard(this.bitboards.black.reduce(function(total, val) {
-   return total.orB(val)
-  }))
- }
-})
-&nbsp;
-function both(white,black) {
- return white.concat(black).reduce(
-   function(total, val) {
-    return total.orB(val)
-   }
-  )
-}
-&nbsp;
-Object.defineProperty(board.prototype, 'both', {
- enumerable: false,
- get: function() {
-  if (!!this.bitboards.cache.both) {
-   return this.bitboards.cache.both
-  }
-  return this.bitboards.cache.both = new Bitboard(both(this.bitboards.white, this.bitboards.black))
- }
-})
-&nbsp;
-Object.defineProperty(board.prototype, 'emptysquares', {
- enumerable: false,
- get: function() {
-  if (!!this.bitboards.cache.empty) {
-   return this.bitboards.cache.empty
-  }
-  return this.bitboards.cache.empty = new Bitboard(both(this.bitboards.white, this.bitboards.black).not())
- }
-})
-&nbsp;
-board.prototype.textBoard = function(divider) {
- divider = divider || ''
- var boards = this.bitboards.white.concat(this.bitboards.black).map(function(i) {
-  return i.toArray()
- });
- ret = '';
- for (var i = 0; i &lt; 64; i++) {
-  if (i &gt; 0 &amp;&amp; (i % 8 == 0)) {
-   ret += divider
-  }
-  ret += boards.reduce(function(t, item) {
-   if (item[i] !=  ' ') return item[i]
-   return t
-  }, ' ')
- }
- return ret
-}
-&nbsp;
-board.prototype.whitePawnPushTargets = function() {
- return this.bitboards.white[Pawn].northOne().andB(this.emptysquares)
-}
-&nbsp;
-board.prototype.whiteDoublePawnPushTargets = function() {
- return this.whitePawnPushTargets().northOne().andB(this.emptysquares).andB(rank4)
-}
-&nbsp;
-board.prototype.whitePawnsAbleToPush = function() {
- return this.emptysquares.southOne().andB(this.bitboards.white[Pawn])
-}
-&nbsp;
-board.prototype.blackPawnPushTargets = function() {
- return this.bitboards.black[Pawn].southOne().andB(this.emptysquares)
-}
-&nbsp;
-board.prototype.blackDoublePawnPushTargets = function() {
- return this.blackPawnPushTargets().southOne().andB(this.emptysquares).andB(rank5)
-}
-&nbsp;
-board.prototype.blackPawnsAbleToPush = function() {
- return this.emptysquares.northOne().andB(this.bitboards.black[Pawn])
-}
-&nbsp;
-board.prototype.whitePawnEastAttackTargets = function() {
- return this.bitboards.white[Pawn].northeastOne()
-}
-&nbsp;
-board.prototype.whitePawnWestAttackTargets = function() {
- return this.bitboards.white[Pawn].northwestOne()
-}
-&nbsp;
-board.prototype.whitePawnAttackTargets = function() {
- return this.bitboards.white[Pawn].northwestOne()
-            .orB(this.bitboards.white[Pawn].northeastOne())
-}
-&nbsp;
-board.prototype.blackPawnEastAttackTargets = function() {
- return this.bitboards.black[Pawn].southeastOne()
-}
-&nbsp;
-board.prototype.blackPawnWestAttackTargets = function() {
- return this.bitboards.black[Pawn].southwestOne()
-}
-&nbsp;
-board.prototype.blackPawnAttackTargets = function() {
- return this.bitboards.black[Pawn].southwestOne()
-            .orB(this.bitboards.black[Pawn].southeastOne())
-}
-&nbsp;
-Object.defineProperty(board.prototype, 'mapBoard', {
- get: function() {
-  var board = this.textBoard().match(/.{8}/g).reverse().join('')
-  var ret = {}
-  for (var i = 0; i &lt; board.length; i++) {
-   ret[this.squareName(i)] = board[i]
-  }
-  return ret
- }
-})
-&nbsp;</pre></td></tr>
+}</pre></td></tr>
 </table></pre>
 
 </div>
