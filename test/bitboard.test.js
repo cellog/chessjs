@@ -659,7 +659,37 @@ describe("Bitboard", function() {
 
     describe("sliding piece moves", function() {
         describe("occluded fills", function() {
-            it("should fill up with occlusion")
+            it("should fill up with occlusion", function() {
+                var rook = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000010' +
+                    '00001000' +
+                    '00000000' +
+                    '01000000'
+                ), empty = chess.bitboard.fromBinary(
+                    '01001010' +
+                    '01011010' +
+                    '01000010' +
+                    '01001000' +
+                    '01001000' +
+                    '01000000' +
+                    '01000000' +
+                    '00000000'
+                )
+                rook.fillUpOcclusion(empty).debugString("\n").should.eql(
+                    '01000000' + "\n" +
+                    '01010000' + "\n" +
+                    '01010000' + "\n" +
+                    '01001000' + "\n" +
+                    '01001010' + "\n" +
+                    '01001000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000'
+                )
+            })
             it("should fill down with occlusion")
             it("should fill left with occlusion")
             it("should fill right with occlusion")
@@ -668,7 +698,39 @@ describe("Bitboard", function() {
             it("should fill se with occlusion")
             it("should fill sw with occlusion")
         })
-        it("should have correct rook moves")
+        describe("should have correct rook moves", function() {
+            it("should have correct north moves", function() {
+                var rook = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000010' +
+                    '00001000' +
+                    '00000000' +
+                    '01000000'
+                ), empty = chess.bitboard.fromBinary(
+                    '01001010' +
+                    '01011010' +
+                    '01000010' +
+                    '01001000' +
+                    '01001000' +
+                    '01000000' +
+                    '01000000' +
+                    '00000000'
+                )
+                rook.rookMovesUp(empty).debugString("\n").should.eql(
+                    '01000000' + "\n" +
+                    '01010000' + "\n" +
+                    '01000000' + "\n" +
+                    '01001000' + "\n" +
+                    '01001000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
         it("should have correct bishop moves")
         it("should have correct queen moves")
     })
