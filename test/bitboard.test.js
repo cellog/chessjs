@@ -1137,10 +1137,53 @@ describe("Bitboard", function() {
         })
         describe("attack bitboards", function() {
             describe("king", function() {
-            })
-            describe("queen", function() {
+                it("should be same as king moves.  We can and it against enemy|empty later in the process", function() {
+                    var king = chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00010000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000')
+                king.kingAttackTargets().should.eql(king.kingMoves())
+                })
             })
             describe("rook", function() {
+                it("should be all the rook moves minus pieces in the way plus 1 square", function() {
+                    var rook = chess.bitboard.fromBinary(
+                        '00000001' +
+                        '00000000' +
+                        '00010000' +
+                        '00000000' +
+                        '00000010' +
+                        '00001000' +
+                        '00000000' +
+                        '00000000'
+                    ), empty = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00000000' +
+                        '00000000' +
+                        '00000000' +
+                        '00001001' +
+                        '00000000' +
+                        '00000000' +
+                        '10010000'
+                    ).not()
+                    rook.rookAttackTargets(empty).debugString("\n").should.eql(
+                        '11111110' + "\n" +
+                        '00010011' + "\n" +
+                        '11101111' + "\n" +
+                        '00010011' + "\n" +
+                        '00011101' + "\n" +
+                        '11110111' + "\n" +
+                        '00011010' + "\n" +
+                        '00011010'
+                    )
+                })
+            })
+            describe("queen", function() {
             })
             describe("bishop", function() {
             })
