@@ -601,4 +601,12 @@ describe("Chessboard", function() {
             myboard.toIndex.bind(null, 89).should.throw('Invalid input "89"')
         })
     })
+
+    describe("all possible attacks", function() {
+        it.skip("calculate", function() {
+            myboard.bitboardAttacks().debugString("\n").should.eql(
+                
+            )
+        })
+    })
 })
