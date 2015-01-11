@@ -1217,6 +1217,37 @@ describe("Bitboard", function() {
                 })
             })
             describe("queen", function() {
+                it("should be all the queen moves minus pieces in the way plus 1 square", function() {
+                    var queen = chess.bitboard.fromBinary(
+                        '00000001' +
+                        '00000000' +
+                        '00010000' +
+                        '00000000' +
+                        '00000010' +
+                        '00001000' +
+                        '00000000' +
+                        '00000000'
+                    ), empty = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00000000' +
+                        '00000000' +
+                        '00100000' +
+                        '00010000' +
+                        '00000000' +
+                        '00000000' +
+                        '00000000'
+                    ).not()
+                    queen.queenAttackTargets(empty).debugString("\n").should.eql(
+                        '11111110' + "\n" +
+                        '00111011' + "\n" +
+                        '11101111' + "\n" +
+                        '00111111' + "\n" +
+                        '00011101' + "\n" +
+                        '11110111' + "\n" +
+                        '00011111' + "\n" +
+                        '00111011'
+                    )
+                })
             })
         }) // attack bitboards
     }) // sliding piece moves
