@@ -1,23 +1,26 @@
 var chess = require('./lib/board.js')
 
-var queen = chess.bitboard.fromBinary(
-                        '00000001' +
-                        '00000000' +
-                        '00010000' +
-                        '00000000' +
-                        '00000010' +
-                        '00001000' +
-                        '00000000' +
-                        '00000000'
-                    ), empty = chess.bitboard.fromBinary(
-                        '00000000' +
-                        '00000000' +
-                        '00000000' +
-                        '00100000' +
-                        '00010000' +
-                        '00000000' +
-                        '00000000' +
-                        '00000000'
-                    ).not()
+var board = new chess.board()
+            board.bitboards.p = chess.bitboard.fromBinary(
+                '00000000' +
+                '10011111' +
+                '01000000' +
+                '00000000' +
+                '01000000' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            )
+            board.bitboards.P = chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '01110110' +
+                '00000000'
+            )
 
-console.log(queen.pawnDoubleMoves(empty).debugString("\n"), "\n")
+
+console.log(board.bitboardAttacks(true).debugString("\n"), "\n")
