@@ -20,6 +20,4 @@ var queen = chess.bitboard.fromBinary(
                         '00000000'
                     ).not()
 
-console.log(queen.debugString("\n"), "\n")
-console.log(empty.debugString("\n"), "\n")
-console.log(queen.queenAttackTargets(empty).debugString("\n"), "\n")
+console.log(queen.pawnDoubleMoves(empty).debugString("\n"), "\n")

@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/bitboard.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">99.07% <small>(106 / 107)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(108 / 108)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">100% <small>(22 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">98.21% <small>(55 / 56)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(56 / 56)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">99.07% <small>(106 / 107)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(108 / 108)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -495,7 +495,8 @@
 277
 278
 279
-280</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+280
+281</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -503,15 +504,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">981</span>
-<span class="cline-any cline-yes">981</span>
+<span class="cline-any cline-yes">989</span>
+<span class="cline-any cline-yes">989</span>
 <span class="cline-any cline-yes">21</span>
 <span class="cline-any cline-yes">21</span>
 <span class="cline-any cline-yes">21</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">960</span>
-<span class="cline-any cline-yes">960</span>
-<span class="cline-any cline-yes">960</span>
+<span class="cline-any cline-yes">968</span>
+<span class="cline-any cline-yes">968</span>
+<span class="cline-any cline-yes">968</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -575,19 +576,19 @@
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">147</span>
+<span class="cline-any cline-yes">149</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">147</span>
+<span class="cline-any cline-yes">149</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">78</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">224</span>
+<span class="cline-any cline-yes">228</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -599,7 +600,8 @@
 <span class="cline-any cline-yes">9</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">214</span>
+<span class="cline-any cline-yes">214</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -612,10 +614,10 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">12</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">12</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
@@ -877,8 +879,9 @@ Bitboard.prototype = {
  not: function() {
   return new Bitboard(~this.l &gt;&gt;&gt; 0, ~this.h &gt;&gt;&gt; 0, this.piece)
  },
- bindtoMe: <span class="fstat-no" title="function not covered" >function(func) {</span>
-<span class="cstat-no" title="statement not covered" >   return func.bind.apply(this, Array.prototype.slice.call(arguments, 1)) </span>
+ bindtoMe: function(func) {
+  var args = [this].concat([].slice.call(arguments, 1))
+  return func.bind.apply(func, args).call()
  },
  southFill: function() {
   var l1 = this.shl(8).orB(this),
@@ -918,11 +921,11 @@ Bitboard.prototype = {
  fillOcclusion: function(p, func, d1, d2, d3, d4)
  {
   var g = this, last = d4 || func
-  g = g.orB(p.andB(func.bind(g, d1).call()))
-  p = p.andB(func.bind(p, d1).call())
-  g = g.orB(p.andB(func.bind(g, d2).call()))
-  p = p.andB(func.bind(p, d2).call())
-  return g.orB(p.andB(last.bind(g, d3).call()))
+  g = g.orB(p.andB(g.bindtoMe(func, d1)))
+  p = p.andB(p.bindtoMe(func, d1))
+  g = g.orB(p.andB(g.bindtoMe(func, d2)))
+  p = p.andB(p.bindtoMe(func, d2))
+  return g.orB(p.andB(g.bindtoMe(last, d3)))
  },
 &nbsp;
  fillUpOcclusion: function(p) {
@@ -952,17 +955,17 @@ Bitboard.prototype = {
 &nbsp;
  pawnSingleMoves: function(empty, white) {
   var op = !!white ? this.northOne : this.southOne
-  return op.bind(this)().andB(empty)
+  return this.bindtoMe(op).andB(empty)
  },
  pawnDoubleMoves: function(empty, white) {
   var op = !!white ? this.northOne : this.southOne,
       rank = !!white ? rank4 : rank5,
       start = op.bind(this)().andB(empty)
-  return op.bind(start)().andB(rank).andB(empty)
+  return this.bindtoMe(op).andB(empty).bindtoMe(op).andB(rank).andB(empty)
  },
  pushablePawns: function(empty, white) {
   var op = !!white ? this.southOne : this.northOne
-  return this.andB(op.bind(empty)())
+  return this.andB(empty.bindtoMe(op))
  },
  pawnAttackTargets: function(white) {
   if (!!white) {
@@ -1058,7 +1061,7 @@ var rank4 = new Bitboard(0,0xff),
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jan 10 2015 22:01:06 GMT-0600 (CST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jan 10 2015 22:22:00 GMT-0600 (CST)</div>
 </div>
 
 <script src="../prettify.js"></script>
