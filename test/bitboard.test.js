@@ -539,7 +539,7 @@ describe("Bitboard", function() {
                         )
                     })
                 })
-                it.only("black pawns", function() {
+                it("black pawns", function() {
                     var bit = chess.bitboard.fromBinary(
                         '00000000' +
                         '00100000' +
@@ -560,6 +560,7 @@ describe("Bitboard", function() {
                         '00000000' +
                         '01000000'
                     )
+                    
                     it("should detect black targets", function() {
                         bit.attackingPawns(enemies).debugString("\n").should.eql(
                         '00000000' + "\n" +
@@ -632,31 +633,23 @@ describe("Bitboard", function() {
                     '00000000'
                 ),
                 enemies = chess.bitboard.fromBinary(
-                    '01000000' +
-                    '00001110' +
+                    '00000000' +
+                    '00000000' +
                     '00010000' +
                     '00000000' +
-                    '00000000' +
+                    '00000100' +
                     '00000000' +
                     '00000000' +
                     '00000000'
                 ),
-                empty = chess.bitboard.fromBinary(
-                    '01000000' +
-                    '00101110' +
-                    '00000100' +
-                    '00000010' +
-                    '00100001' +
-                    '00010000' +
-                    '11100000' +
-                    '00000000'
-                ).not()
-                it.only("should detect black moves and possible attacks", function() {
-                    bit.pawnMoves(empty, enemies, true).debugString("\n").should.eql(
+                emptyboard = bit.andB(enemies).not()
+                it("should detect black moves and possible attacks", function() {
+                    bit.pawnMoves(emptyboard, enemies, false).debugString("\n").should.eql(
                     '00000000' + "\n" +
                     '00000000' + "\n" +
-                    '00110100' + "\n" +
-                    '00100010' + "\n" +
+                    '00110000' + "\n" +
+                    '00100100' + "\n" +
+                    '00000110' + "\n" +
                     '00000001' + "\n" +
                     '00010000' + "\n" +
                     '11100000'
