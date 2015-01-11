@@ -1183,9 +1183,40 @@ describe("Bitboard", function() {
                     )
                 })
             })
-            describe("queen", function() {
-            })
             describe("bishop", function() {
+                it("should be all the bishop moves minus pieces in the way plus 1 square", function() {
+                    var bishop = chess.bitboard.fromBinary(
+                        '00000001' +
+                        '00000000' +
+                        '00010000' +
+                        '00000000' +
+                        '00000010' +
+                        '00001000' +
+                        '00000000' +
+                        '00000000'
+                    ), empty = chess.bitboard.fromBinary(
+                        '00000000' +
+                        '00000000' +
+                        '00000000' +
+                        '00100000' +
+                        '00010000' +
+                        '00000000' +
+                        '00000000' +
+                        '00000000'
+                    ).not()
+                    bishop.bishopAttackTargets(empty).debugString("\n").should.eql(
+                        '01100100' + "\n" +
+                        '00111010' + "\n" +
+                        '00001101' + "\n" +
+                        '00101111' + "\n" +
+                        '00010100' + "\n" +
+                        '00000111' + "\n" +
+                        '00011101' + "\n" +
+                        '00110010'
+                    )
+                })
+            })
+            describe("queen", function() {
             })
         }) // attack bitboards
     }) // sliding piece moves
