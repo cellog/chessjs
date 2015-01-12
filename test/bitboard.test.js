@@ -1312,4 +1312,62 @@ describe("Bitboard", function() {
             bit.bitscan().should.eql([])
         })
     })
+
+    describe("inCheck", function() {
+        var king = chess.bitboard.fromBinary(
+            '00000000' +
+            '00000000' +
+            '00000000' +
+            '00000000' +
+            '00010000' +
+            '00000000' +
+            '00000000' +
+            '00000000'
+        ), empty = new chess.bitboard(0,0)
+        describe.only("pawns", function() {
+            it("should handle white pawn checks", function() {
+                var p = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000010' +
+                    '00100000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                ), checkingpawn = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00100000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                king.inCheck(king.andB(p).not(), p, empty, empty, empty, empty, empty, true).should.eql({
+                    pawn: checkingpawn
+                })
+            })
+            it("should handle black pawn checks", function() {
+                var p = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                king.inCheck(king.andB(p).not(), p, empty, empty, empty, empty, empty, false).should.eql({
+                    pawn: p
+                })
+            })
+        })
+        it("should handle rook checks")
+        it("should handle bishop checks")
+        it("should handle knight checks")
+        it("should handle queen checks")
+    })
 }) // Bitboard
