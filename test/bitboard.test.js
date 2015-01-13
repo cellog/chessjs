@@ -1629,7 +1629,83 @@ describe("Bitboard", function() {
                     bishop: b,
                     queen: q
                 })
-            })
+            }) // multiple checks
+        })
+    }) // inCheck
+    describe("algebraicToBitboard", function() {
+        it("c3", function() {
+            chess.bitboard.algebraicToBitboard('c3').debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00100000' + "\n" +
+                '00000000' + "\n" +
+                '00000000'
+            )
+        })
+        it("a8", function() {
+            chess.bitboard.algebraicToBitboard('a8').debugString("\n").should.eql(
+                '10000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000'
+            )
+        })
+        it("h1", function() {
+            chess.bitboard.algebraicToBitboard('h1').debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000001'
+            )
+        })
+        it("fail to parse", function() {
+            chess.bitboard.algebraicToBitboard.bind(null, 'q4').should.throw('Unknown coordinate: "q4"')
+        })
+    })
+    describe("toAlgebraic", function() {
+        it("c3", function() {
+            chess.bitboard.algebraicToBitboard('c3').toAlgebraic().should.eql('c3')
+        })
+        it("a8", function() {
+            chess.bitboard.algebraicToBitboard('a8').toAlgebraic().should.eql('a8')
+        })
+        it("h1", function() {
+            chess.bitboard.algebraicToBitboard('h1').toAlgebraic().should.eql('h1')
+        })
+        it("a7,f4", function() {
+            chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ).toAlgebraic().should.eql('a7, f4')
+        })
+        it("a7,f4 as array", function() {
+            chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ).toAlgebraic(true).should.eql(['a7', 'f4'])
         })
     })
 }) // Bitboard
