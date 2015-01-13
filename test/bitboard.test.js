@@ -139,6 +139,21 @@ describe("Bitboard", function() {
         })
     })
 
+    describe("xor", function() {
+        it("should combine a value with a bitboard", function() {
+            bitboard.xor(0xff << 16).debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '11111011' + "\n" +
+                '00000010' + "\n" +
+                '00000000' + "\n" +
+                '00010000' + "\n" +
+                '10011111' + "\n" +
+                '00000000'
+            )
+        })
+    })
+
     describe("debugString", function() {
         it("should return binary string representation for debugging", function() {
             myboard.bitboards.P.debugString().should
@@ -1706,6 +1721,128 @@ describe("Bitboard", function() {
                 '00000000' +
                 '00000000'
             ).toAlgebraic(true).should.eql(['a7', 'f4'])
+        })
+        it("empty bitboard", function() {
+            new chess.bitboard().toAlgebraic().should.eql('')
+            new chess.bitboard().toAlgebraic(true).should.eql([])
+        })
+    })
+    describe("movePieces", function() {
+        it("should transpose all passed pieces to new squares", function() {
+            var start = chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '01111000' +
+                '00000000'
+            ),
+            from = chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ), to = chess.bitboard.fromBinary(
+                '00100000' +
+                '00000000' +
+                '00000000' +
+                '00001000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            )
+            start.movePieces(from, to).debugString("\n").should.eql(
+                '00100000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00001000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '01111000' + "\n" +
+                '00000000'
+            )
+        })
+        it("should fail if new squares are occupied", function() {
+            var start = chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '01111000' +
+                '00000000'
+            ),
+            from = chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ), to = chess.bitboard.fromBinary(
+                '00100000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00010000' +
+                '00000000'
+            )
+            start.movePieces.bind(start, from, to).should.throw('Cannot move to spaces that are already occupied (d2)')
+        })
+        it("should fail if from and to are the same", function() {
+            var foo = new chess.bitboard(0,0)
+            foo.movePieces.bind(foo,foo,foo).should.throw('Cannot move from and to the same space ()')
+        })
+    })
+    describe("movePieceAlgebraic", function() {
+        it("should work with b2 to a5", function() {
+            var start = chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '01111000' +
+                '00000000'
+            )
+            start.movePieceAlgebraic("b2", "a5").debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '10000000' + "\n" +
+                '00000000' + "\n" +
+                '10000000' + "\n" +
+                '00000100' + "\n" +
+                '00000000' + "\n" +
+                '00111000' + "\n" +
+                '00000000'
+            )
+        })
+    })
+    describe("toString", function() {
+        it("should display all info", function() {
+            new chess.bitboard(1,0, 'R').toString().should.eql('{high: 0, low: 1, piece: R binary representation:' +
+                "\n" +
+                '00000001' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" + '}'
+                )
         })
     })
 }) // Bitboard
