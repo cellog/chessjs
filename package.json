@@ -8,13 +8,14 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "./node_modules/mocha/bin/mocha --recursive"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/cellog/chessjs.git"
   },
   "dependencies" : {
+    "custom-error": "~0.2.1"
   },
   "devDependencies" : {
     "mocha": "~2.1.0",
