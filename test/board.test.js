@@ -659,20 +659,164 @@ describe("Chessboard", function() {
                 '00000000'
             )
             board.bitboardAttacks(false).debugString("\n").should.eql(
-                    '00000000' + "\n" +
-                    '10001001' + "\n" +
-                    '10110101' + "\n" +
-                    '10100011' + "\n" +
-                    '01000001' + "\n" +
-                    '11000001' + "\n" +
-                    '00000001' + "\n" +
-                    '00000000'
+                '00000000' + "\n" +
+                '10001001' + "\n" +
+                '10110101' + "\n" +
+                '10100011' + "\n" +
+                '01000001' + "\n" +
+                '11000001' + "\n" +
+                '00000001' + "\n" +
+                '00000000'
             )
         })
     })
 
     describe("getLegalMoves", function() {
+        var myboard = new chess.board
         describe("should return a bitboard representing legal pawn moves", function() {
+            beforeEach(function() {
+                    //reprenting this board:
+                    //0000k000 
+                    //0ppp0Pp0 
+                    //NN000000 
+                    //p0000000 
+                    //PK000000 
+                    //000n00nn 
+                    //0PPP00P0 
+                    //00000000
+                var empty = new chess.bitboard(0,0)
+                myboard.bitboards.q = empty
+                myboard.bitboards.Q = empty
+                myboard.bitboards.r = empty
+                myboard.bitboards.R = empty
+                myboard.bitboards.b = empty
+                myboard.bitboards.B = empty
+                myboard.bitboards.q = empty
+                myboard.bitboards.Q = empty
+                myboard.bitboards.P = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000100' +
+                    '00000000' +
+                    '00000000' +
+                    '10000000' +
+                    '00000000' +
+                    '01110010' +
+                    '00000000'
+                )
+                myboard.bitboards.p = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '01110010' +
+                    '00000000' +
+                    '10000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.k = chess.bitboard.fromBinary(
+                    '00001000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.K = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '01000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.n = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00010011' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.N = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '11000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+            })
+            it("captures", function() {
+                var b = myboard.getLegalMoves(0, "pawn", true)
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00010001' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+            it("moves", function() {
+                var b = myboard.getLegalMoves(0, "pawn", false)
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000100' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00100000' + "\n" +
+                    '01100000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000'
+                )
+            })
+        })
+        describe("should return a bitboard representing legal rook moves", function() {
+            describe("captures", function() {
+            })
+            describe("moves", function() {
+                
+            })
+        })
+        describe("should return a bitboard representing legal queen moves", function() {
+            describe("captures", function() {
+            })
+            describe("moves", function() {
+                
+            })
+        })
+        describe("should return a bitboard representing legal king moves", function() {
+            describe("captures", function() {
+            })
+            describe("moves", function() {
+                
+            })
+        })
+        describe("should return a bitboard representing legal bishop moves", function() {
+            describe("captures", function() {
+            })
+            describe("moves", function() {
+                
+            })
+        })
+        describe("should return a bitboard representing legal knight moves", function() {
+            describe("captures", function() {
+            })
+            describe("moves", function() {
+                
+            })
         })
     })
 })
