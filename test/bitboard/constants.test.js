@@ -113,5 +113,117 @@ describe("Bitboard constants", function() {
                     '00000000'
                 )
         })
+        it("afile", function() {
+            var c = new chess.bitboard()
+            c.afile
+                .debugString("\n").should.eql(
+                    '10000000' + "\n" +
+                    '10000000' + "\n" +
+                    '10000000' + "\n" +
+                    '10000000' + "\n" +
+                    '10000000' + "\n" +
+                    '10000000' + "\n" +
+                    '10000000' + "\n" +
+                    '10000000'
+                )
+        })
+        it("bfile", function() {
+            var c = new chess.bitboard()
+            c.bfile
+                .debugString("\n").should.eql(
+                    '01000000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000' + "\n" +
+                    '01000000'
+                )
+        })
+        it("cfile", function() {
+            var c = new chess.bitboard()
+            c.cfile
+                .debugString("\n").should.eql(
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000'
+                )
+        })
+        it("dfile", function() {
+            var c = new chess.bitboard()
+            c.dfile
+                .debugString("\n").should.eql(
+                    '00010000' + "\n" +
+                    '00010000' + "\n" +
+                    '00010000' + "\n" +
+                    '00010000' + "\n" +
+                    '00010000' + "\n" +
+                    '00010000' + "\n" +
+                    '00010000' + "\n" +
+                    '00010000'
+                )
+        })
+        it("efile", function() {
+            var c = new chess.bitboard()
+            c.efile
+                .debugString("\n").should.eql(
+                    '00001000' + "\n" +
+                    '00001000' + "\n" +
+                    '00001000' + "\n" +
+                    '00001000' + "\n" +
+                    '00001000' + "\n" +
+                    '00001000' + "\n" +
+                    '00001000' + "\n" +
+                    '00001000'
+                )
+        })
+        it("ffile", function() {
+            var c = new chess.bitboard()
+            c.ffile
+                .debugString("\n").should.eql(
+                    '00000100' + "\n" +
+                    '00000100' + "\n" +
+                    '00000100' + "\n" +
+                    '00000100' + "\n" +
+                    '00000100' + "\n" +
+                    '00000100' + "\n" +
+                    '00000100' + "\n" +
+                    '00000100'
+                )
+        })
+        it("gfile", function() {
+            var c = new chess.bitboard()
+            c.gfile
+                .debugString("\n").should.eql(
+                    '00000010' + "\n" +
+                    '00000010' + "\n" +
+                    '00000010' + "\n" +
+                    '00000010' + "\n" +
+                    '00000010' + "\n" +
+                    '00000010' + "\n" +
+                    '00000010' + "\n" +
+                    '00000010'
+                )
+        })
+        it("hfile", function() {
+            var c = new chess.bitboard()
+            c.hfile
+                .debugString("\n").should.eql(
+                    '00000001' + "\n" +
+                    '00000001' + "\n" +
+                    '00000001' + "\n" +
+                    '00000001' + "\n" +
+                    '00000001' + "\n" +
+                    '00000001' + "\n" +
+                    '00000001' + "\n" +
+                    '00000001'
+                )
+        })
     })
 }) // Bitboard

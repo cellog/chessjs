@@ -670,4 +670,9 @@ describe("Chessboard", function() {
             )
         })
     })
+
+    describe("getLegalMoves", function() {
+        describe("should return a bitboard representing legal pawn moves", function() {
+        })
+    })
 })
