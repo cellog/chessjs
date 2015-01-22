@@ -784,10 +784,123 @@ describe("Chessboard", function() {
             })
         })
         describe("should return a bitboard representing legal rook moves", function() {
+           beforeEach(function() {
+                    //reprenting this board:
+                    //00000000
+                    //000r00K0
+                    //00kp0000
+                    //00000000
+                    //00000000
+                    //00000000
+                    //p0RPPP00
+                    //000NRN00
+                var empty = new chess.bitboard(0,0)
+                myboard.bitboards.q = empty
+                myboard.bitboards.Q = empty
+                myboard.bitboards.r = empty
+                myboard.bitboards.R = empty
+                myboard.bitboards.b = empty
+                myboard.bitboards.B = empty
+                myboard.bitboards.q = empty
+                myboard.bitboards.Q = empty
+                myboard.bitboards.P = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00011100' +
+                    '00000000'
+                )
+                myboard.bitboards.p = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '10000000' +
+                    '00000000'
+                )
+                myboard.bitboards.k = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00100000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.K = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000010' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.r = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.R = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00100000' +
+                    '00001000'
+                )
+                myboard.bitboards.N = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00010100'
+                )
+            })
             it("captures", function() {
+                var b = myboard.getLegalMoves(1, "rook", true)
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '10000000' + "\n" +
+                    '00000000'
+                )
             })
             it("moves", function() {
-                
+                var b = myboard.getLegalMoves(1, "rook", false)
+                b.should.be.instanceof(chess.bitboard)
+                b.debugString("\n").should.eql(
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00000000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '00100000' + "\n" +
+                    '01000000' + "\n" +
+                    '00100000'
+                )
             })
         })
         describe("should return a bitboard representing legal queen moves", function() {
