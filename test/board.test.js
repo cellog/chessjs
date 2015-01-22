@@ -784,37 +784,37 @@ describe("Chessboard", function() {
             })
         })
         describe("should return a bitboard representing legal rook moves", function() {
-            describe("captures", function() {
+            it("captures", function() {
             })
-            describe("moves", function() {
+            it("moves", function() {
                 
             })
         })
         describe("should return a bitboard representing legal queen moves", function() {
-            describe("captures", function() {
+            it("captures", function() {
             })
-            describe("moves", function() {
+            it("moves", function() {
                 
             })
         })
         describe("should return a bitboard representing legal king moves", function() {
-            describe("captures", function() {
+            it("captures", function() {
             })
-            describe("moves", function() {
+            it("moves", function() {
                 
             })
         })
         describe("should return a bitboard representing legal bishop moves", function() {
-            describe("captures", function() {
+            it("captures", function() {
             })
-            describe("moves", function() {
+            it("moves", function() {
                 
             })
         })
         describe("should return a bitboard representing legal knight moves", function() {
-            describe("captures", function() {
+            it("captures", function() {
             })
-            describe("moves", function() {
+            it("moves", function() {
                 
             })
         })
