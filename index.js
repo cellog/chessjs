@@ -55,7 +55,7 @@ myboard.bitboards.r = chess.bitboard.fromBinary(
     '00000000' +
     '00000000' +
     '00000000' +
-    '00000000' +
+    '00000100' +
     '00000000' +
     '00000000'
 )
@@ -81,4 +81,5 @@ myboard.bitboards.N = chess.bitboard.fromBinary(
 )
 console.log(myboard.blackpieces.debugString("\n"),"\n")
 console.log(myboard.whitepieces.debugString("\n"),"\n")
+myboard.blackToMove()
 console.log(myboard.getLegalMoves(1, "rook", false).debugString("\n"))

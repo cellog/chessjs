@@ -827,14 +827,14 @@ describe("Chessboard", function() {
                     //00kp0000
                     //00000000
                     //00000000
-                    //00000000
+                    //00000r00
                     //p0RPPP00
                     //000NRN00
                 var empty = new chess.bitboard(0,0)
                 myboard.bitboards.q = empty
                 myboard.bitboards.Q = empty
-                myboard.bitboards.r = empty
-                myboard.bitboards.R = empty
+                myboard.bitboards.n = empty
+                myboard.bitboards.N = empty
                 myboard.bitboards.b = empty
                 myboard.bitboards.B = empty
                 myboard.bitboards.q = empty
@@ -885,7 +885,7 @@ describe("Chessboard", function() {
                     '00000000' +
                     '00000000' +
                     '00000000' +
-                    '00000000' +
+                    '00000100' +
                     '00000000' +
                     '00000000'
                 )
@@ -910,35 +910,69 @@ describe("Chessboard", function() {
                     '00010100'
                 )
             })
-            it("captures", function() {
+            describe("captures", function() {
+                it("white", function() {
                     myboard.whiteToMove()
-                var b = myboard.getLegalMoves(1, "rook", true)
-                b.should.be.instanceof(chess.bitboard)
-                b.debugString("\n").should.eql(
-                    '00000000' + "\n" +
-                    '00000000' + "\n" +
-                    '00000000' + "\n" +
-                    '00000000' + "\n" +
-                    '00000000' + "\n" +
-                    '00000000' + "\n" +
-                    '10000000' + "\n" +
-                    '00000000'
-                )
+                    var b = myboard.getLegalMoves(1, "rook", true)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '10000000' + "\n" +
+                        '00000000'
+                    )
+                })
+                it("black", function() {
+                    myboard.blackToMove()
+                    var b = myboard.getLegalMoves(1, "rook", true)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000100' + "\n" +
+                        '00000000'
+                    )
+                })
             })
-            it("moves", function() {
+            describe("moves", function() {
+                it("white", function() {
                     myboard.whiteToMove()
-                var b = myboard.getLegalMoves(1, "rook", false)
-                b.should.be.instanceof(chess.bitboard)
-                b.debugString("\n").should.eql(
-                    '00000000' + "\n" +
-                    '00000000' + "\n" +
-                    '00000000' + "\n" +
-                    '00100000' + "\n" +
-                    '00100000' + "\n" +
-                    '00100000' + "\n" +
-                    '01000000' + "\n" +
-                    '00100000'
-                )
+                    var b = myboard.getLegalMoves(1, "rook", false)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00100000' + "\n" +
+                        '00100000' + "\n" +
+                        '00100000' + "\n" +
+                        '01000000' + "\n" +
+                        '00100000'
+                    )
+                })
+                it("black", function() {
+                    myboard.blackToMove()
+                    var b = myboard.getLegalMoves(1, "rook", false)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00010100' + "\n" +
+                        '11101100' + "\n" +
+                        '00000100' + "\n" +
+                        '00000100' + "\n" +
+                        '00000100' + "\n" +
+                        '11111011' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000'
+                    )
+                })
             })
         })
         describe("should return a bitboard representing legal queen moves", function() {
