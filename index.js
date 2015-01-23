@@ -49,37 +49,27 @@ myboard.bitboards.K = chess.bitboard.fromBinary(
     '00000000' +
     '00000000'
 )
-myboard.bitboards.b = chess.bitboard.fromBinary(
-    '00000000' +
-    '00010000' +
-    '00000000' +
+myboard.bitboards.n = chess.bitboard.fromBinary(
+    '00001000' +
     '00000000' +
     '00000000' +
-    '00000100' +
+    '00000000' +
+    '00000010' +
+    '00000000' +
     '00000000' +
     '00000000'
 )
-myboard.bitboards.B = chess.bitboard.fromBinary(
-    '00000000' +
-    '00000000' +
-    '00000000' +
-    '00000000' +
-    '00000000' +
-    '00000000' +
-    '00100000' +
-    '00001000'
-)
 myboard.bitboards.N = chess.bitboard.fromBinary(
+    '00011000' +
     '00000000' +
     '00000000' +
     '00000000' +
     '00000000' +
     '00000000' +
     '00000000' +
-    '00000000' +
-    '00010100'
+    '00000000'
 )
 console.log(myboard.blackpieces.debugString("\n"),"\n")
 console.log(myboard.whitepieces.debugString("\n"),"\n")
-myboard.blackToMove()
-console.log(myboard.getLegalMoves(3, "bishop", false).debugString("\n"))
+//myboard.blackToMove()
+console.log(myboard.getLegalMoves(2, "knight", true).debugString("\n"))

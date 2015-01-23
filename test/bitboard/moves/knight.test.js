@@ -31,7 +31,7 @@ describe("Bitboard knight move functions", function() {
                 '00000000' +
                 '00000000' +
                 '10000001'
-            ).knightJumps().debugString("\n").should.eql(
+            ).knightMoves().debugString("\n").should.eql(
                 '00000000' + "\n" +
                 '00100100' + "\n" +
                 '01000010' + "\n" +
@@ -52,7 +52,7 @@ describe("Bitboard knight move functions", function() {
                 '00000000' +
                 '00000000' +
                 '00010000'
-            ).knightJumps().debugString("\n").should.eql(
+            ).knightMoves().debugString("\n").should.eql(
                 '00000000' + "\n" +
                 '01100010' + "\n" +
                 '00110110' + "\n" +
@@ -73,7 +73,7 @@ describe("Bitboard knight move functions", function() {
                 '00001000' +
                 '00000000' +
                 '00000000'
-            ).knightJumps().debugString("\n").should.eql(
+            ).knightMoves().debugString("\n").should.eql(
                 '00101000' + "\n" +
                 '01000100' + "\n" +
                 '00000000' + "\n" +
