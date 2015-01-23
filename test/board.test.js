@@ -1138,11 +1138,160 @@ describe("Chessboard", function() {
                 
             })
         })
-        describe("should return a bitboard representing legal bishop moves", function() {
-            it("captures", function() {
+        describe("should return a bitboard representing legal queen moves", function() {
+           beforeEach(function() {
+                    //reprenting this board:
+                    //00000000
+                    //000r00K0
+                    //00kp0000
+                    //00000000
+                    //00000000
+                    //00000r00
+                    //p0RPPP00
+                    //000NRN00
+                var empty = new chess.bitboard(0,0)
+                myboard.bitboards.q = empty
+                myboard.bitboards.r = empty
+                myboard.bitboards.n = empty
+                myboard.bitboards.N = empty
+                myboard.bitboards.b = empty
+                myboard.bitboards.B = empty
+                myboard.bitboards.q = empty
+                myboard.bitboards.R = empty
+                myboard.bitboards.P = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00011100' +
+                    '00000000'
+                )
+                myboard.bitboards.p = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00001000' +
+                    '00000000' +
+                    '10000000' +
+                    '00000000'
+                )
+                myboard.bitboards.k = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00100000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.K = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000010' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.b = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00010000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000100' +
+                    '00000000' +
+                    '00000000'
+                )
+                myboard.bitboards.B = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00100000' +
+                    '00001000'
+                )
+                myboard.bitboards.N = chess.bitboard.fromBinary(
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00000000' +
+                    '00010100'
+                )
             })
-            it("moves", function() {
-                
+            describe("captures", function() {
+                it("white", function() {
+                    myboard.whiteToMove()
+                    var b = myboard.getLegalMoves(3, "bishop", true)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00001000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000'
+                    )
+                })
+                it("black", function() {
+                    myboard.blackToMove()
+                    var b = myboard.getLegalMoves(3, "bishop", true)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00001000' + "\n" +
+                        '00000000'
+                    )
+                })
+            })
+            describe("moves", function() {
+                it("white", function() {
+                    myboard.whiteToMove()
+                    var b = myboard.getLegalMoves(3, "bishop", false)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '10000000' + "\n" +
+                        '01010000' + "\n" +
+                        '00000000' + "\n" +
+                        '01000000'
+                    )
+                })
+                it("black", function() {
+                    myboard.blackToMove()
+                    var b = myboard.getLegalMoves(3, "bishop", false)
+                    b.should.be.instanceof(chess.bitboard)
+                    b.debugString("\n").should.eql(
+                        '00101000' + "\n" +
+                        '00000000' + "\n" +
+                        '00001000' + "\n" +
+                        '00000101' + "\n" +
+                        '00000010' + "\n" +
+                        '00000001' + "\n" +
+                        '00000010' + "\n" +
+                        '00000001'
+                    )
+                })
             })
         })
         describe("should return a bitboard representing legal knight moves", function() {
