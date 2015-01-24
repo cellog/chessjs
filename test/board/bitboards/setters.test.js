@@ -1,7 +1,7 @@
 var should = require("should"),
     chess = require("../../../lib/board.js")
 
-describe("Chessboard basics", function() {
+describe("Chessboard bitboards", function() {
     var myboard;
     
     before(function() {
