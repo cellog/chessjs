@@ -602,6 +602,51 @@ describe("Chessboard", function() {
         })
     })
 
+    describe("fromTextBoard", function() {
+        it("should read a text board with no divider", function() {
+            chess.board.fromTextBoard(
+                '++++++++' +
+                '+N++++++' +
+                '+++k++++' +
+                '+++P+P++' +
+                '++++++p+' +
+                '++++bp++' +
+                '+r++K+++' +
+                '+++Q++++'
+            ).textBoard("\n", ".").should.eql(
+                '........' + "\n" +
+                '.N......' + "\n" +
+                '...k....' + "\n" +
+                '...P.P..' + "\n" +
+                '......p.' + "\n" +
+                '....bp..' + "\n" +
+                '.r..K...' + "\n" +
+                '...Q....'
+            )
+        })
+        it("should read a text board with a divider", function() {
+            chess.board.fromTextBoard(
+                '++++++++|' +
+                '+N+++N++|' +
+                '+++k++++|' +
+                '+++P+P++|' +
+                '++++++p+|' +
+                '++++bp++|' +
+                '+r++K+++|' +
+                '+++Q++++', '|'
+            ).textBoard("\n", ".").should.eql(
+                '........' + "\n" +
+                '.N...N..' + "\n" +
+                '...k....' + "\n" +
+                '...P.P..' + "\n" +
+                '......p.' + "\n" +
+                '....bp..' + "\n" +
+                '.r..K...' + "\n" +
+                '...Q....'
+            )
+        })
+    })
+
     describe("all possible attacks", function() {
         it("calculate white", function() {
             board = new chess.board
@@ -675,84 +720,15 @@ describe("Chessboard", function() {
         var myboard = new chess.board
         describe("should return a bitboard representing legal pawn moves", function() {
             beforeEach(function() {
-                    //reprenting this board:
-                    //0000k000 
-                    //0ppp0Pp0 
-                    //NN000000 
-                    //p0000000 
-                    //PK000000 
-                    //000n00nn 
-                    //0PPP00P0 
-                    //00000000
-                var empty = new chess.bitboard(0,0)
-                myboard.bitboards.q = empty
-                myboard.bitboards.Q = empty
-                myboard.bitboards.r = empty
-                myboard.bitboards.R = empty
-                myboard.bitboards.b = empty
-                myboard.bitboards.B = empty
-                myboard.bitboards.q = empty
-                myboard.bitboards.Q = empty
-                myboard.bitboards.P = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000100' +
-                    '00000000' +
-                    '00000000' +
-                    '10000000' +
-                    '00000000' +
-                    '01110010' +
-                    '00000000'
-                )
-                myboard.bitboards.p = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '01110010' +
-                    '00000000' +
-                    '10000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.k = chess.bitboard.fromBinary(
-                    '00001000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.K = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '01000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.n = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00010011' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.N = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '11000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
+                myboard = chess.board.fromTextBoard(
+                    '0000k000' +
+                    '0ppp0Pp0' +
+                    'NN000000' +
+                    'p0000000' +
+                    'PK000000' +
+                    '000n00nn' + 
+                    '0PPP00P0' +
+                    '00000000')
             })
             describe("captures", function() {
                 it("white", function() {
@@ -821,94 +797,15 @@ describe("Chessboard", function() {
         })
         describe("should return a bitboard representing legal rook moves", function() {
            beforeEach(function() {
-                    //reprenting this board:
-                    //00000000
-                    //000r00K0
-                    //00kp0000
-                    //00000000
-                    //00000000
-                    //00000r00
-                    //p0RPPP00
-                    //000NRN00
-                var empty = new chess.bitboard(0,0)
-                myboard.bitboards.q = empty
-                myboard.bitboards.Q = empty
-                myboard.bitboards.n = empty
-                myboard.bitboards.N = empty
-                myboard.bitboards.b = empty
-                myboard.bitboards.B = empty
-                myboard.bitboards.q = empty
-                myboard.bitboards.Q = empty
-                myboard.bitboards.P = chess.bitboard.fromBinary(
+                myboard = chess.board.fromTextBoard(
+                    '00000000' +
+                    '000r00K0' +
+                    '00kp0000' +
                     '00000000' +
                     '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00011100' +
-                    '00000000'
-                )
-                myboard.bitboards.p = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '10000000' +
-                    '00000000'
-                )
-                myboard.bitboards.k = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00100000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.K = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000010' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.r = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000100' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.R = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00100000' +
-                    '00001000'
-                )
-                myboard.bitboards.N = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00010100'
-                )
+                    '00000r00' +
+                    'p0RPPP00' +
+                    '000NRN00')
             })
             describe("captures", function() {
                 it("white", function() {
@@ -977,94 +874,15 @@ describe("Chessboard", function() {
         })
         describe("should return a bitboard representing legal queen moves", function() {
            beforeEach(function() {
-                    //reprenting this board:
-                    //00000000
-                    //000r00K0
-                    //00kp0000
-                    //00000000
-                    //00000000
-                    //00000r00
-                    //p0RPPP00
-                    //000NRN00
-                var empty = new chess.bitboard(0,0)
-                myboard.bitboards.q = empty
-                myboard.bitboards.r = empty
-                myboard.bitboards.n = empty
-                myboard.bitboards.N = empty
-                myboard.bitboards.b = empty
-                myboard.bitboards.B = empty
-                myboard.bitboards.q = empty
-                myboard.bitboards.R = empty
-                myboard.bitboards.P = chess.bitboard.fromBinary(
+                myboard = chess.board.fromTextBoard(
                     '00000000' +
+                    '000q00K0' +
+                    '00kp0000' +
                     '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00011100' +
-                    '00000000'
-                )
-                myboard.bitboards.p = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00001000' +
-                    '00000000' +
-                    '10000000' +
-                    '00000000'
-                )
-                myboard.bitboards.k = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00100000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.K = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000010' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.q = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000100' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.Q = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00100000' +
-                    '00001000'
-                )
-                myboard.bitboards.N = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00010100'
-                )
+                    '0000p000' +
+                    '00000q00' +
+                    'p0QPPP00' +
+                    '000NQN00')
             })
             describe("captures", function() {
                 it("white", function() {
@@ -1133,97 +951,18 @@ describe("Chessboard", function() {
         })
         describe("should return a bitboard representing legal king moves", function() {
            beforeEach(function() {
-                    //reprenting this board:
-                    //00000000
-                    //0N000000
-                    //000k0000
-                    //000P0P00
-                    //000000p0
-                    //0000bp00
-                    //0r00K000
-                    //00000000
-                var empty = new chess.bitboard(0,0)
-                myboard.bitboards.q = empty
-                myboard.bitboards.r = empty
-                myboard.bitboards.n = empty
-                myboard.bitboards.N = empty
-                myboard.bitboards.b = empty
-                myboard.bitboards.B = empty
-                myboard.bitboards.q = empty
-                myboard.bitboards.R = empty
-                myboard.bitboards.P = chess.bitboard.fromBinary(
+                myboard = chess.board.fromTextBoard(
                     '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00010100' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.b = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00001000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.r = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '01000000' +
-                    '00000000'
-                )
-                myboard.bitboards.N = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '01000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.p = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000010' +
-                    '00000100' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.k = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.K = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00001000' +
-                    '00000000'
-                )
+                    '0N000000' +
+                    '000k0000' +
+                    '000P0P00' +
+                    '000000p0' +
+                    '0000bp00' +
+                    '0r00K000' +
+                    '00000000')
             })
             describe("captures", function() {
-                it.only("white", function() {
+                it("white", function() {
                     myboard.whiteToMove()
                     var b = myboard.getLegalMoves(5, "king", true)
                     b.should.be.instanceof(chess.bitboard)
@@ -1264,10 +1003,10 @@ describe("Chessboard", function() {
                         '00000000' + "\n" +
                         '00000000' + "\n" +
                         '00000000' + "\n" +
-                        '10000000' + "\n" +
-                        '01010000' + "\n" +
                         '00000000' + "\n" +
-                        '01000000'
+                        '00010000' + "\n" +
+                        '00000000' + "\n" +
+                        '00011100'
                     )
                 })
                 it("black", function() {
@@ -1275,108 +1014,29 @@ describe("Chessboard", function() {
                     var b = myboard.getLegalMoves(5, "king", false)
                     b.should.be.instanceof(chess.bitboard)
                     b.debugString("\n").should.eql(
-                        '00101000' + "\n" +
+                        '00000000' + "\n" +
+                        '00111000' + "\n" +
                         '00000000' + "\n" +
                         '00001000' + "\n" +
-                        '00000101' + "\n" +
-                        '00000010' + "\n" +
-                        '00000001' + "\n" +
-                        '00000010' + "\n" +
-                        '00000001'
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000' + "\n" +
+                        '00000000'
                     )
                 })
             })
         })
-        describe("should return a bitboard representing legal queen moves", function() {
+        describe("should return a bitboard representing legal bishop moves", function() {
            beforeEach(function() {
-                    //reprenting this board:
-                    //00000000
-                    //000r00K0
-                    //00kp0000
-                    //00000000
-                    //00000000
-                    //00000r00
-                    //p0RPPP00
-                    //000NRN00
-                var empty = new chess.bitboard(0,0)
-                myboard.bitboards.q = empty
-                myboard.bitboards.r = empty
-                myboard.bitboards.n = empty
-                myboard.bitboards.N = empty
-                myboard.bitboards.b = empty
-                myboard.bitboards.B = empty
-                myboard.bitboards.q = empty
-                myboard.bitboards.R = empty
-                myboard.bitboards.P = chess.bitboard.fromBinary(
+                myboard = chess.board.fromTextBoard(
                     '00000000' +
+                    '000b00K0' +
+                    '00kp0000' +
                     '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00011100' +
-                    '00000000'
-                )
-                myboard.bitboards.p = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00001000' +
-                    '00000000' +
-                    '10000000' +
-                    '00000000'
-                )
-                myboard.bitboards.k = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00100000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.K = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000010' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.b = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000100' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.B = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00100000' +
-                    '00001000'
-                )
-                myboard.bitboards.N = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00010100'
-                )
+                    '0000p000' +
+                    '00000b00' +
+                    'p0BPPP00' +
+                    '000NBN00')
             })
             describe("captures", function() {
                 it("white", function() {
@@ -1445,74 +1105,15 @@ describe("Chessboard", function() {
         })
         describe("should return a bitboard representing legal knight moves", function() {
            beforeEach(function() {
-                var empty = new chess.bitboard(0,0)
-                myboard.bitboards.q = empty
-                myboard.bitboards.r = empty
-                myboard.bitboards.n = empty
-                myboard.bitboards.N = empty
-                myboard.bitboards.b = empty
-                myboard.bitboards.B = empty
-                myboard.bitboards.q = empty
-                myboard.bitboards.R = empty
-                myboard.bitboards.P = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00011100' +
-                    '00000000'
-                )
-                myboard.bitboards.p = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00010000' +
-                    '00000000' +
-                    '00001000' +
-                    '00000000' +
-                    '10000000' +
-                    '00000000'
-                )
-                myboard.bitboards.k = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000000' +
-                    '00100000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.K = chess.bitboard.fromBinary(
-                    '00000000' +
-                    '00000010' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.n = chess.bitboard.fromBinary(
-                    '00001000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000010' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
-                )
-                myboard.bitboards.N = chess.bitboard.fromBinary(
-                    '00011000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000' +
-                    '00000000'
+                myboard = chess.board.fromTextBoard(
+                    '+++NNn++' +
+                    '+++++++K' +
+                    '++kp++++' +
+                    '++++++++' +
+                    '++++p+n+' +
+                    '++++++++' +
+                    'p++PPP++' +
+                    '++++++++'
                 )
             })
             describe("captures", function() {
@@ -1554,7 +1155,7 @@ describe("Chessboard", function() {
                     b.should.be.instanceof(chess.bitboard)
                     b.debugString("\n").should.eql(
                         '00000000' + "\n" +
-                        '01100100' + "\n" +
+                        '01100110' + "\n" +
                         '00001100' + "\n" +
                         '00000000' + "\n" +
                         '00000000' + "\n" +
@@ -1569,8 +1170,8 @@ describe("Chessboard", function() {
                     b.should.be.instanceof(chess.bitboard)
                     b.debugString("\n").should.eql(
                         '00000000' + "\n" +
-                        '00100000' + "\n" +
-                        '00000101' + "\n" +
+                        '00010000' + "\n" +
+                        '00001111' + "\n" +
                         '00001000' + "\n" +
                         '00000000' + "\n" +
                         '00001000' + "\n" +

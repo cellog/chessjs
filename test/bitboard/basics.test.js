@@ -304,4 +304,27 @@ describe("Bitboard basics", function() {
                 )
         })
     })
+    describe("verticalFlip", function() {
+        it("should put the board upside down", function() {
+            chess.bitboard.fromBinary(
+                '00000000' +
+                '10000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '01111000' +
+                '00000000'
+            ).verticalFlip().debugString("\n").should.eql(
+                '00000000' + "\n" + 
+                '01111000' + "\n" + 
+                '00000000' + "\n" + 
+                '00000100' + "\n" + 
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '10000000' + "\n" + 
+                '00000000'
+            )
+        })
+    })
 }) // Bitboard
