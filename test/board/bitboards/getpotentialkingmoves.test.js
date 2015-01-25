@@ -108,11 +108,104 @@ describe("Chessboard bitboard", function() {
                 '00000000', 'black to move'
             )
         })
-        it.skip("should account for bishop checks", function() {
+        it("should account for bishop checks", function() {
+            myboard = chess.board.fromTextBoard(
+                '....B...' +
+                '........' +
+                '...k....' +
+                '....B...' +
+                '........' +
+                '....b...' +
+                '.....K..' +
+                '........'
+            )
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00001110' + "\n" +
+                '00001010' + "\n" +
+                '00001100', 'white to move'
+            )
+            myboard.blackToMove()
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00001000' + "\n" +
+                '00001000' + "\n" +
+                '00111000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000', 'black to move'
+            )
         })
-        it.skip("should account for rook checks", function() {
+        it("should account for rook checks", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '...P....' +
+                '...k....' +
+                '...R....' +
+                '........' +
+                '....r...' +
+                '.....K..' +
+                '........'
+            )
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00001000' + "\n" +
+                '00000010' + "\n" +
+                '00000110', 'white to move'
+            )
+            myboard.blackToMove()
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00101000' + "\n" +
+                '00101000' + "\n" +
+                '00010000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000', 'black to move'
+            )
         })
-        it.skip("should account for queen checks", function() {
+        it("should account for queen checks", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '....P...' +
+                '...k....' +
+                '..Q.....' +
+                '........' +
+                '...q....' +
+                '.....K..' +
+                '........'
+            )
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000010' + "\n" +
+                '00001010', 'white to move'
+            )
+            myboard.blackToMove()
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00010000' + "\n" +
+                '00001000' + "\n" +
+                '00100000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000', 'black to move'
+            )
         })
         it("should account for the buffer around the enemy king", function() {
             myboard = chess.board.fromTextBoard(
