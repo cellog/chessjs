@@ -75,7 +75,38 @@ describe("Chessboard bitboard", function() {
                 '00000000', 'black to move'
             )
         })
-        it.skip("should account for knight checks", function() {
+        it("should account for knight checks", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '...k....' +
+                '...N..n.' +
+                '.....N..' +
+                '........' +
+                '....nK..' +
+                '..n.....'
+            )
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00001000' + "\n" +
+                '00000010' + "\n" +
+                '00001100', 'white to move'
+            )
+            myboard.blackToMove()
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00010000' + "\n" +
+                '00100000' + "\n" +
+                '00101000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000', 'black to move'
+            )
         })
         it.skip("should account for bishop checks", function() {
         })
