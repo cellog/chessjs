@@ -7,18 +7,18 @@ describe("Chessboard bitboard", function() {
     before(function() {
         myboard = new chess.board;
     });
-    describe.only("getPotentialKingMoves", function() {
+    describe("getPotentialKingMoves", function() {
         var myboard
         it("should return a full circle if no obstructions or checks", function() {
             myboard = chess.board.fromTextBoard(
+                'N.......' +
+                '.....R.Q' +
                 '........' +
-                '........' +
-                '........' +
-                '...k....' +
-                '........' +
-                '........' +
-                '....K...' +
-                '........'
+                '...k.p.B' +
+                '.r......' +
+                'P.......' +
+                '....K..b' +
+                'n.......'
             )
             myboard.getPotentialKingMoves().debugString("\n").should.eql(
                 '00000000' + "\n" +
@@ -28,7 +28,7 @@ describe("Chessboard bitboard", function() {
                 '00000000' + "\n" +
                 '00011100' + "\n" +
                 '00010100' + "\n" +
-                '00011100'
+                '00011100', 'white to move'
             )
             myboard.blackToMove()
             myboard.getPotentialKingMoves().debugString("\n").should.eql(
@@ -39,10 +39,41 @@ describe("Chessboard bitboard", function() {
                 '00111000' + "\n" +
                 '00000000' + "\n" +
                 '00000000' + "\n" +
-                '00000000'
+                '00000000', 'black to move'
             )
         })
-        it.skip("should account for pawn checks", function() {
+        it("should account for pawn checks", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '...k....' +
+                '..P.P...' +
+                '.P..P..p' +
+                '....p...' +
+                '.....K..' +
+                '........'
+            )
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00001100' + "\n" +
+                '00001010' + "\n" +
+                '00001110', 'white to move'
+            )
+            myboard.blackToMove()
+            myboard.getPotentialKingMoves().debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00111000' + "\n" +
+                '00101000' + "\n" +
+                '00001000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000', 'black to move'
+            )
         })
         it.skip("should account for knight checks", function() {
         })
