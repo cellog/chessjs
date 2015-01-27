@@ -225,6 +225,23 @@ describe("Bitboard basics", function() {
             new chess.bitboard().to64Index(true).should.eql([])
         })
     })
+    describe("from64Index", function() {
+        it("c3", function() {
+            chess.bitboard.from64Index(18).toAlgebraic().should.eql('c3')
+        })
+        it("a8", function() {
+            chess.bitboard.from64Index(56).toAlgebraic().should.eql('a8')
+        })
+        it("h1", function() {
+            chess.bitboard.from64Index(7).toAlgebraic().should.eql('h1')
+        })
+        it("a7", function() {
+            chess.bitboard.from64Index(48).toAlgebraic().should.eql('a7')
+        })
+        it("f4", function() {
+            chess.bitboard.from64Index(29).toAlgebraic().should.eql('f4')
+        })
+    })
     describe("movePieces", function() {
         it("should transpose all passed pieces to new squares", function() {
             var start = chess.bitboard.fromBinary(
