@@ -1,9 +1,9 @@
 var should = require("should"),
     chess = require("../../lib/board.js")
 
-describe("Bitboard getConnectingRay", function() {
+describe("Bitboard getConnectingRays", function() {
     it("empty bitboard should return empty", function() {
-        new chess.bitboard(0,0).getConnectingRay(new chess.bitboard(0,0))
+        new chess.bitboard(0,0).getConnectingRays(new chess.bitboard(0,0))
             .debugString("\n").should.eql(
                 '00000000' + "\n" +
                 '00000000' + "\n" +
@@ -26,7 +26,7 @@ describe("Bitboard getConnectingRay", function() {
                 '00000000' +
                 '00000100' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -54,7 +54,7 @@ describe("Bitboard getConnectingRay", function() {
                 '00000000' +
                 '01000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -84,7 +84,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000100' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -112,7 +112,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '01000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -142,7 +142,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000100' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -172,7 +172,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000010' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -202,7 +202,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000100' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -234,7 +234,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000100' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -262,7 +262,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -292,7 +292,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000100' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -320,7 +320,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -350,7 +350,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000100' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -382,7 +382,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -412,7 +412,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -442,7 +442,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -472,7 +472,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000' +
@@ -502,7 +502,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '10000000' +
                 '00000000' +
@@ -532,7 +532,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000000' +
                 '10000000' +
                 '00000000' +
@@ -562,7 +562,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000001' +
                 '00000000' +
                 '00000000' +
@@ -592,7 +592,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000001' +
                 '00000000' +
                 '00000000' +
@@ -622,7 +622,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000001' +
                 '00000000' +
                 '00000000' +
@@ -652,7 +652,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000010' +
                 '00000000' +
                 '00000000' +
@@ -682,7 +682,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00000010' +
                 '00000000' +
                 '00000000' +
@@ -714,7 +714,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00010000' +
                 '00000010' +
                 '01000000' +
@@ -744,7 +744,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00010000' +
                 '00000010' +
                 '01000000' +
@@ -774,7 +774,7 @@ chess.bitboard.fromBinary(
                 '00000000' +
                 '00000000' +
                 '00000000'
-            ).getConnectingRay(chess.bitboard.fromBinary(
+            ).getConnectingRays(chess.bitboard.fromBinary(
                 '00010000' +
                 '00000010' +
                 '01000000' +
