@@ -195,20 +195,20 @@
     </style>
 </head>
 <body>
-<div class="header high">
+<div class="header low">
     <h1>Code coverage report for <span class="entity">lib/vector.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">39.13% <small>(9 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(6 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">39.13% <small>(9 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -257,74 +257,74 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">21</span>
-<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">10</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">7</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span></td><td class="text"><pre class="prettyprint lang-js">var chess = exports
 chess.vector = Vector;
 &nbsp;
-function Vector(x, y) {
- this.x = x
- this.y = y
+<span class="fstat-no" title="function not covered" >function Vector(x, y) {</span>
+<span class="cstat-no" title="statement not covered" > this.x = x</span>
+<span class="cstat-no" title="statement not covered" > this.y = y</span>
 }
 &nbsp;
-Vector.prototype.set = function(x,y) {
- this.x = x
- this.y = y
+Vector.prototype.set = <span class="fstat-no" title="function not covered" >function(x,y) {</span>
+<span class="cstat-no" title="statement not covered" > this.x = x</span>
+<span class="cstat-no" title="statement not covered" > this.y = y</span>
 }
 &nbsp;
-Vector.prototype.toChessSquare = function() {
- if (this.x &lt; 0 || this.x &gt; 7 || this.y &lt; 0 || this.y &gt; 7) {
-  throw new TypeError("Invalid chess square (" + this.x + "," + this.y + ")")
+Vector.prototype.toChessSquare = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" > if (this.x &lt; 0 || this.x &gt; 7 || this.y &lt; 0 || this.y &gt; 7) {</span>
+<span class="cstat-no" title="statement not covered" >  throw new TypeError("Invalid chess square (" + this.x + "," + this.y + ")")</span>
  }
- var col = String.fromCharCode(this.x + 97), row = String.fromCharCode(this.y + 49)
- return col + row
+<span class="cstat-no" title="statement not covered" > var col = String.fromCharCode(this.x + 97), row = String.fromCharCode(this.y + 49)</span>
+<span class="cstat-no" title="statement not covered" > return col + row</span>
 }
 &nbsp;
-Vector.prototype.indexOf = function() {
- return this.y*8 + this.x
+Vector.prototype.indexOf = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" > return this.y*8 + this.x</span>
 }
 &nbsp;
-Vector.fromIndex = function(index) {
- if (index &lt; 0 || index &gt; 63) {
-  throw new Error('"' + index + '" is not a valid chessboard index')
+Vector.fromIndex = <span class="fstat-no" title="function not covered" >function(index) {</span>
+<span class="cstat-no" title="statement not covered" > if (index &lt; 0 || index &gt; 63) {</span>
+<span class="cstat-no" title="statement not covered" >  throw new Error('"' + index + '" is not a valid chessboard index')</span>
  }
- var y = Math.floor(index / 8), x = index % 8
- return new Vector(x, y)
+<span class="cstat-no" title="statement not covered" > var y = Math.floor(index / 8), x = index % 8</span>
+<span class="cstat-no" title="statement not covered" > return new Vector(x, y)</span>
 }
 &nbsp;
-Vector.prototype.plus = function (vec) {
- return new Vector(this.x + vec.x, this.y + vec.y);
+Vector.prototype.plus = <span class="fstat-no" title="function not covered" >function (vec) {</span>
+<span class="cstat-no" title="statement not covered" > return new Vector(this.x + vec.x, this.y + vec.y);</span>
 }
 &nbsp;
 Vector.prototype.toString = Vector.prototype.toChessSquare</pre></td></tr>
@@ -332,7 +332,7 @@ Vector.prototype.toString = Vector.prototype.toChessSquare</pre></td></tr>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 26 2015 22:17:01 GMT-0600 (CST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 27 2015 20:22:49 GMT-0600 (CST)</div>
 </div>
 
 <script src="../prettify.js"></script>
