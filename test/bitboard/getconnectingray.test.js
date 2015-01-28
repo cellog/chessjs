@@ -15,6 +15,36 @@ describe("Bitboard getConnectingRays", function() {
                 '00000000'
             )
     })
+    it("bitboard with multiple pieces should return empty", function() {
+            chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000' +
+                '00000000' +
+                '00000100' +
+                '00000000'
+            ).getConnectingRays(chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '01000000' +
+                '00000000'
+            ), 'rook').debugString("\n").should.eql(
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000' + "\n" +
+                '00000000'
+            )
+    })
     describe("horizontal intersections", function() {
         it("rook should return a horizontal ray", function() {
             chess.bitboard.fromBinary(
