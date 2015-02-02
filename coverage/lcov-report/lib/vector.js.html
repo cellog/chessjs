@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/vector.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">51.67% <small>(31 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">65% <small>(39 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">35.48% <small>(11 / 31)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">45.16% <small>(14 / 31)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">43.75% <small>(7 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">62.5% <small>(10 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">53.45% <small>(31 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">63.79% <small>(37 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -314,8 +314,8 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2410</span>
-<span class="cline-any cline-yes">2410</span>
+<span class="cline-any cline-yes">2418</span>
+<span class="cline-any cline-yes">2418</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -332,23 +332,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">6</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">7</span>
 <span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -358,11 +358,11 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -425,9 +425,9 @@ Vector.prototype.toAlgebraic = function() {
 }
 &nbsp;
 Vector.prototype.toBitboard = function(otherVectors) {
- <span class="missing-if-branch" title="if path not taken" >I</span>if (otherVectors) {
-<span class="cstat-no" title="statement not covered" >  otherVectors.push(this)</span>
-<span class="cstat-no" title="statement not covered" >  return otherVectors.reduce(<span class="fstat-no" title="function not covered" >function(t,i) {<span class="cstat-no" title="statement not covered" ></span>return t.orB(Bitboard.from64Index(i.indexOf()))}</span>, new Bitboard(0,0))</span>
+ if (otherVectors) {
+  otherVectors.push(this)
+  return otherVectors.reduce(function(t,i) {return t.orB(Bitboard.from64Index(i.indexOf()))}, new Bitboard(0,0))
  }
  return Bitboard.from64Index(this.indexOf())
 }
@@ -450,12 +450,12 @@ Vector.prototype.plus = function (vec) {
 &nbsp;
 Vector.prototype.toString = Vector.prototype.toAlgebraic
 &nbsp;
-Vector.fromBitboard = <span class="fstat-no" title="function not covered" >function(bitboard) {</span>
-<span class="cstat-no" title="statement not covered" > var squares = bitboard.to64Index()</span>
-<span class="cstat-no" title="statement not covered" > if (squares.length &gt; 1) {</span>
-<span class="cstat-no" title="statement not covered" >  return squares.map(<span class="fstat-no" title="function not covered" >function(i) {<span class="cstat-no" title="statement not covered" ></span>return Vector.from64Index(i)}</span>)</span>
+Vector.fromBitboard = function(bitboard) {
+ var squares = bitboard.to64Index(true)
+ if (squares.length &gt; 1) {
+  return squares.map(function(i) {return Vector.from64Index(i)})
  }
-<span class="cstat-no" title="statement not covered" > return [Vector.from64Index(i)]</span>
+ return [Vector.from64Index(squares[0])]
 }
 &nbsp;
 Vector.prototype.getConnectedRooks = <span class="fstat-no" title="function not covered" >function(squares) {</span>
@@ -500,7 +500,7 @@ Vector.prototype.getConnectedQueens = <span class="fstat-no" title="function not
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 02 2015 16:15:44 GMT-0600 (CST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 02 2015 16:25:13 GMT-0600 (CST)</div>
 </div>
 
 <script src="../prettify.js"></script>

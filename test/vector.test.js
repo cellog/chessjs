@@ -1,5 +1,6 @@
 var should = require("should"),
-    Vector = require("../lib/vector.js").vector
+    Vector = require("../lib/vector.js").vector,
+    Bitboard = require("../lib/bitboard.js")
 
 describe("Vector", function() {
 
@@ -114,6 +115,45 @@ describe("Vector", function() {
                 '01000000' + "\n" + 
                 '00000000'
             )
+        })
+        it ("should return a bitboard with multiple bits", function() {
+            new Vector(1,1).toBitboard([new Vector(4,4)]).debugString("\n").should.eql(
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '00001000' + "\n" + 
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '01000000' + "\n" + 
+                '00000000'
+            )
+        })
+    })
+
+    describe("fromBitboard", function() {
+        it ("should return a single vector", function() {
+            Vector.fromBitboard(Bitboard.fromBinary(
+                '00000000' + 
+                '00000000' + 
+                '00000000' + 
+                '00000000' + 
+                '00000000' + 
+                '00000000' + 
+                '01000000' + 
+                '00000000'
+            )).should.eql([new Vector(1,1)])
+        })
+        it ("should return 2 vectors", function() {
+            Vector.fromBitboard(Bitboard.fromBinary(
+                '00000000' + 
+                '00000000' + 
+                '00000000' + 
+                '00001000' + 
+                '00000000' + 
+                '00000000' + 
+                '01000000' + 
+                '00000000'
+            )).should.eql([new Vector(4,4), new Vector(1,1)])
         })
     })
 })
