@@ -101,4 +101,19 @@ describe("Vector", function() {
             v1.y.should.eql(3, 'y')
         })
     })
+
+    describe("toBitboard", function() {
+        it ("should return a bitboard with a single bit", function() {
+            new Vector(1,1).toBitboard().debugString("\n").should.eql(
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '00000000' + "\n" + 
+                '01000000' + "\n" + 
+                '00000000'
+            )
+        })
+    })
 })
