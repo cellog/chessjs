@@ -27,40 +27,40 @@ describe("Vector", function() {
         })
     })
 
-    describe("fromIndex", function() {
+    describe("from64Index", function() {
         it ("should return 0 vector for 0", function () {
-            var v = Vector.fromIndex(0)
+            var v = Vector.from64Index(0)
             v.should.be.instanceof(Vector)
             v.x.should.eql(0, 'x')
             v.y.should.eql(0, 'y')
         })
         it ("should return 1,0 vector for 1", function () {
-            var v = Vector.fromIndex(1)
+            var v = Vector.from64Index(1)
             v.should.be.instanceof(Vector)
             v.x.should.eql(1, 'x')
             v.y.should.eql(0, 'y')
         })
         it ("should return 7,0 vector for 7", function () {
-            var v = Vector.fromIndex(7)
+            var v = Vector.from64Index(7)
             v.should.be.instanceof(Vector)
             v.x.should.eql(7, 'x')
             v.y.should.eql(0, 'y')
         })
         it ("should return 0,1 vector for 8", function () {
-            var v = Vector.fromIndex(8)
+            var v = Vector.from64Index(8)
             v.should.be.instanceof(Vector)
             v.x.should.eql(0, 'x')
             v.y.should.eql(1, 'y')
         })
         it ("should return 7,7 vector for 63", function () {
-            var v = Vector.fromIndex(63)
+            var v = Vector.from64Index(63)
             v.should.be.instanceof(Vector)
             v.x.should.eql(7, 'x')
             v.y.should.eql(7, 'y')
         })
         it ("should fail on invalid input", function() {
-            Vector.fromIndex.bind(null, -1).should.throw('"-1" is not a valid chessboard index')
-            Vector.fromIndex.bind(null, 64).should.throw('"64" is not a valid chessboard index')
+            Vector.from64Index.bind(null, -1).should.throw('"-1" is not a valid chessboard index')
+            Vector.from64Index.bind(null, 64).should.throw('"64" is not a valid chessboard index')
         })
     })
 
