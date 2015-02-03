@@ -1,3 +1,13 @@
 var chess = require('./lib/board.js'),
     Vector = chess.vector
-console.log(new Vector(1,1).toBitboard().debugString("\n"))
+myboard = chess.board.fromTextBoard(
+                '........' +
+                '...r....' +
+                '........' +
+                '........' +
+                '........' +
+                '...K....' +
+                '........' +
+                '........'
+            )
+            console.log(myboard.getCheckingLanes(true))
