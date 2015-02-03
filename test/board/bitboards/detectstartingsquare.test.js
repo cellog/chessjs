@@ -20,6 +20,14 @@ describe("Chessboard detectStartingSquare", function() {
             myboard.detectStartingSquare.bind(myboard, 'e5', unused, unused, "e5", 0, false, false)
                 .should.throwError(chess.InvalidMoveError, {message: '"e5" attempts to move non-existent piece', name: "InvalidMoveError"})
         })
+        it("should fail on Pxc5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Pxc5', unused, unused, "c5", 0, false, true)
+                .should.throwError(chess.InvalidMoveError, {message: "Pawn capture move must be a file (a-h) or square", name: "InvalidMoveError"})
+        })
+        it("should fail on dxc5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'dxc5', unused, unused, "c5", 0, 'd', true)
+                .should.throwError(chess.InvalidMoveError, {message: 'Pawn capture from "d4" to "c5" is impossible, no pawn on "d4"', name: "InvalidMoveError"})
+        })
     })
     describe("pawn", function() {
     })
