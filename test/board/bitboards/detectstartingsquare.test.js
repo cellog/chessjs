@@ -30,6 +30,51 @@ describe("Chessboard detectStartingSquare", function() {
         })
     })
     describe("pawn", function() {
+        beforeEach(function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '.p......' +
+                '........' +
+                '...p.p..' +
+                '..P.P.P.' +
+                '........' +
+                '.P......' +
+                '........'
+            )
+        })
+        it("should return e4 for exd5", function() {
+            myboard.detectStartingSquare('exd5', myboard.bitboards.P, unused, 'd5', 0, 'e', true).should.eql('e4')
+        })
+        it("should return d5 for dxe4 black", function() {
+            myboard.blackToMove()
+            myboard.detectStartingSquare('dxe4', myboard.bitboards.p, unused, 'e4', 0, 'd', true).should.eql('d5')
+        })
+        it("should return b2 for b4", function() {
+            myboard.detectStartingSquare('b4', myboard.bitboards.P, unused, 'b4', 0, false, false).should.eql('b2')
+        })
+        it("should return b7 for b5", function() {
+            myboard.blackToMove()
+            myboard.detectStartingSquare('b5', myboard.bitboards.p, unused, 'b5', 0, false, false).should.eql('b7')
+        })
+        it("should return b2 for b3", function() {
+            myboard.detectStartingSquare('b3', myboard.bitboards.P, unused, 'b3', 0, false, false).should.eql('b2')
+        })
+        it("should fail on c6", function() {
+            myboard.detectStartingSquare.bind(myboard, 'c6', myboard.bitboards.P, unused, "c6", 0, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: '"c6" attempts to move non-existent piece', name: "InvalidMoveError"})
+        })
+        it("should fail on d3", function() {
+            myboard.blackToMove()
+            myboard.detectStartingSquare.bind(myboard, 'c6', myboard.bitboards.p, unused, "c6", 0, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: '"c6" attempts to move non-existent piece', name: "InvalidMoveError"})
+        })
+        it("should fail on d4", function() {
+            myboard.detectStartingSquare.bind(myboard, 'd4', myboard.bitboards.P, unused, "d4", 0, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: '"d4" attempts to move non-existent piece', name: "InvalidMoveError"})
+        })
     })
     describe("rook", function() {
     })
