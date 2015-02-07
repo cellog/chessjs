@@ -1,14 +1,14 @@
 var chess = require('./lib/board.js'),
     Vector = chess.vector
 myboard = chess.board.fromTextBoard(
+                '..Q...Q.' +
+                '........' +
+                '.Q...p..' +
                 '........' +
                 '........' +
-                '.....p..' +
                 '........' +
-                '........' +
-                '.BB..B..' +
-                '........' +
+                '..Q.....' +
                 '........'
             )
-            console.log(myboard.detectStartingSquare.bind(myboard, 'Bg7', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'g7',
-                                              3, false, false).call())
+            console.log(myboard.detectStartingSquare('Qcg6', myboard.bitboards.Q, myboard.getLegalMoves(4, 'queen', false), 'g6',
+                                              4, 'c', false))

@@ -158,6 +158,48 @@ describe("Chessboard detectStartingSquare", function() {
     describe("knight", function() {
     })
     describe("queen", function() {
+        beforeEach(function() {
+            myboard = chess.board.fromTextBoard(
+                '..Q...Q.' +
+                '........' +
+                '.Q...p..' +
+                '........' +
+                '........' +
+                '........' +
+                '..Q.....' +
+                '........'
+            )
+        })
+        it("should error on Qh6", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Qh6', myboard.bitboards.Q, myboard.getLegalMoves(4, 'queen', false), 'h6',
+                                              4, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Queens cannot move to "h6"', name: "InvalidMoveError"})
+        })
+        it("should return b6 for Qxf6", function() {
+            myboard.detectStartingSquare('Qxf6', myboard.bitboards.Q, myboard.getLegalMoves(4, 'queen', true), 'f6',
+                                              4, false, true)
+                .should.eql('b6')
+        })
+        it("should error on Qg6", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Qg6', myboard.bitboards.Q, myboard.getLegalMoves(4, 'queen', false), 'g6',
+                                              4, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many queens can move to "g6", need more disambiguation than "' +
+                                              'Qg6"', name: "InvalidMoveError"})
+        })
+        it("should return c3 on Qcg6", function() {
+            myboard.detectStartingSquare('Qcg6', myboard.bitboards.Q, myboard.getLegalMoves(4, 'queen', false), 'g6',
+                                              4, 'c', false)
+                .should.eql('c2')
+        })
+        it("should error on Qcc6", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Qcc6', myboard.bitboards.Q, myboard.getLegalMoves(4, 'queen', false), 'c6',
+                                              4, 'c', false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many queens can move to "c6", need more disambiguation than "' +
+                                              'c"', name: "InvalidMoveError"})
+        })
     })
     describe("king", function() {
     })
