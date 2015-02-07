@@ -135,24 +135,24 @@ describe("Chessboard detectStartingSquare", function() {
                 .should.throwError(chess.InvalidMoveError,
                                    {message: 'Rooks cannot move to "g6"', name: "InvalidMoveError"})
         })
-        it("should return b6 for Rxg6", function() {
-            myboard.detectStartingSquare('Rxg6', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', true), 'f6',
-                                              3, false, true)
-                .should.eql('c3')
+        it("should return b6 for Rxf6", function() {
+            myboard.detectStartingSquare('Rxf6', myboard.bitboards.R, myboard.getLegalMoves(1, 'rook', true), 'f6',
+                                              1, false, true)
+                .should.eql('b6')
         })
-        it("should error on Bd5", function() {
-            myboard.detectStartingSquare.bind(myboard, 'Bd5', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'd5',
-                                              3, false, false)
+        it("should error on Rd6", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Rd6', myboard.bitboards.R, myboard.getLegalMoves(1, 'rook', false), 'd6',
+                                              1, false, false)
                 .should.throwError(chess.InvalidMoveError,
-                                   {message: 'Too many bishops can move to "d5", need more disambiguation than "' +
-                                              'Bd5"', name: "InvalidMoveError"})
+                                   {message: 'Too many rooks can move to "d6", need more disambiguation than "' +
+                                              'Rd6"', name: "InvalidMoveError"})
         })
-        it("should error on Bbd5", function() {
-            myboard.detectStartingSquare.bind(myboard, 'Bbd5', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'd5',
-                                              3, 'b', false)
+        it("should error on Rdd6", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Rdd6', myboard.bitboards.R, myboard.getLegalMoves(1, 'rook', false), 'd6',
+                                              1, 'd', false)
                 .should.throwError(chess.InvalidMoveError,
-                                   {message: 'Too many bishops can move to "d5", need more disambiguation than "' +
-                                              'b"', name: "InvalidMoveError"})
+                                   {message: 'Too many rooks can move to "d6", need more disambiguation than "' +
+                                              'd"', name: "InvalidMoveError"})
         })
     })
     describe("knight", function() {
