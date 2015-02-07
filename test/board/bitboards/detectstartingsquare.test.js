@@ -246,5 +246,45 @@ describe("Chessboard detectStartingSquare", function() {
         })
     })
     describe("king", function() {
+        beforeEach(function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '........' +
+                '...Pr...' +
+                '...K....' +
+                '........' +
+                '........' +
+                '........'
+            )
+        })
+        it("should error on Kh8", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Kh8', myboard.bitboards.K, myboard.getLegalMoves(5, 'king', false), 'h8',
+                                              5, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'King cannot move to "h8" from "d4"', name: "InvalidMoveError"})
+        })
+        it("should return d4 for Kxe5", function() {
+            myboard.detectStartingSquare('Kxe5', myboard.bitboards.K, myboard.getLegalMoves(5, 'king', true), 'e5',
+                                              5, false, true)
+                .should.eql('d4')
+        })
+        it("should error on Kd5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Kd5', myboard.bitboards.K, myboard.getLegalMoves(5, 'king', false), 'd5',
+                                              5, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'King cannot move to "d5" from "d4"', name: "InvalidMoveError"})
+        })
+        it("should error on Ke5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Ke5', myboard.bitboards.K, myboard.getLegalMoves(5, 'king', false), 'e5',
+                                              5, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'King cannot move to "e5" from "d4"', name: "InvalidMoveError"})
+        })
+        it("should return d4 for Kc3", function() {
+            myboard.detectStartingSquare('Kc3', myboard.bitboards.K, myboard.getLegalMoves(5, 'king', false), 'c3',
+                                              5, false, false)
+                .should.eql('d4')
+        })
     })
 })

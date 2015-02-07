@@ -1,14 +1,22 @@
 var chess = require('./lib/board.js'),
     Vector = chess.vector
-myboard = chess.board.fromTextBoard(
-                '........' +
-                '..N.....' +
-                '........' +
-                '.....p..' +
-                '........' +
-                '..N.N...' +
-                '........' +
-                '........'
-            )
-            console.log(myboard.detectStartingSquare('Nxf5', myboard.bitboards.N, myboard.getLegalMoves(2, 'knight', true), 'f5',
-                                              2, false, true))
+var a = chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00010000' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ).getConnectingRays(chess.bitboard.fromBinary(
+                '00010000' +
+                '00000010' +
+                '01000000' +
+                '00000000' +
+                '01000010' +
+                '01000000' +
+                '00010100' +
+                '10000000'
+            ), 'queen', true)
+            a.debugString.bind(a, "oops").call()

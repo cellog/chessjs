@@ -939,4 +939,72 @@ chess.bitboard.fromBinary(
             )
         })
     })
+    describe("edge cases", function() {
+        it("should fail on non-existing square", function() {
+            var a = chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00010000' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ).getConnectingRays(chess.bitboard.fromBinary(
+                '00010000' +
+                '00000010' +
+                '01000000' +
+                '00000000' +
+                '01000010' +
+                '01000000' +
+                '00010100' +
+                '10000000'
+            ), 'queen', true)
+            a.debugString.bind(a, "oops").should.throwError("Square not found \"oops\"")
+        })
+    
+        it("reduce with no initial total", function() {
+            var a = chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00010000' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ).getConnectingRays(chess.bitboard.fromBinary(
+                '00010000' +
+                '00000010' +
+                '01000000' +
+                '00000000' +
+                '01000010' +
+                '01000000' +
+                '00010100' +
+                '10000000'
+            ), 'queen', true)
+            a.reduce(function(square, sq, t) {return t}).should.eql(a.squares[a.squarenames[0]])
+        })
+        it("only 1 square", function() {
+            var a = chess.bitboard.fromBinary(
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00010000' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ).getConnectingRays(chess.bitboard.fromBinary(
+                '00010000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000' +
+                '00000000'
+            ), 'queen', true).length.should.eql(1)
+        })
+    })
 }) // Bitboard
