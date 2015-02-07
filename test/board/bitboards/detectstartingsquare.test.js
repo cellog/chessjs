@@ -76,9 +76,46 @@ describe("Chessboard detectStartingSquare", function() {
                                    {message: '"d4" attempts to move non-existent piece', name: "InvalidMoveError"})
         })
     })
-    describe("rook", function() {
-    })
     describe("bishop", function() {
+        beforeEach(function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '.B......' +
+                '.....p..' +
+                '........' +
+                '........' +
+                '.BB..B..' +
+                '........' +
+                '........'
+            )
+        })
+        it("should error on Bg7", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Bg7', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'g7',
+                                              3, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Bishops cannot move to "g7"', name: "InvalidMoveError"})
+        })
+        it("should return c3 for Bxe6", function() {
+            myboard.detectStartingSquare('Bxe6', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', true), 'f6',
+                                              3, false, true)
+                .should.eql('c3')
+        })
+        it("should error on Bd5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Bd5', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'd5',
+                                              3, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many bishops can move to "d5", need more disambiguation than "' +
+                                              'Bd5"', name: "InvalidMoveError"})
+        })
+        it("should error on Bbd5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Bbd5', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'd5',
+                                              3, 'b', false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many bishops can move to "d5", need more disambiguation than "' +
+                                              'b"', name: "InvalidMoveError"})
+        })
+    })
+    describe("rook", function() {
     })
     describe("knight", function() {
     })
