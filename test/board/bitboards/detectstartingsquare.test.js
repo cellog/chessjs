@@ -116,6 +116,44 @@ describe("Chessboard detectStartingSquare", function() {
         })
     })
     describe("rook", function() {
+        beforeEach(function() {
+            myboard = chess.board.fromTextBoard(
+                '...R....' +
+                '........' +
+                '.R...p..' +
+                '........' +
+                '........' +
+                '........' +
+                '...R....' +
+                '........' +
+                '........'
+            )
+        })
+        it("should error on Rg6", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Rg6', myboard.bitboards.R, myboard.getLegalMoves(1, 'rook', false), 'g6',
+                                              1, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Rooks cannot move to "g6"', name: "InvalidMoveError"})
+        })
+        it("should return b6 for Rxg6", function() {
+            myboard.detectStartingSquare('Rxg6', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', true), 'f6',
+                                              3, false, true)
+                .should.eql('c3')
+        })
+        it("should error on Bd5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Bd5', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'd5',
+                                              3, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many bishops can move to "d5", need more disambiguation than "' +
+                                              'Bd5"', name: "InvalidMoveError"})
+        })
+        it("should error on Bbd5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Bbd5', myboard.bitboards.B, myboard.getLegalMoves(3, 'bishop', false), 'd5',
+                                              3, 'b', false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many bishops can move to "d5", need more disambiguation than "' +
+                                              'b"', name: "InvalidMoveError"})
+        })
     })
     describe("knight", function() {
     })
