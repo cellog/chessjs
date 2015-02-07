@@ -156,6 +156,50 @@ describe("Chessboard detectStartingSquare", function() {
         })
     })
     describe("knight", function() {
+        beforeEach(function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '..N.....' +
+                '........' +
+                '.....p..' +
+                '........' +
+                '..N.N...' +
+                '........' +
+                '........'
+            )
+        })
+        it("should error on Nf5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'f5', myboard.bitboards.N, myboard.getLegalMoves(2, 'knight', false), 'f5',
+                                              2, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Knights cannot move to "f5" from "c7, e3, c3"', name: "InvalidMoveError"})
+        })
+        it("should return e3 for Nxf5", function() {
+            myboard.detectStartingSquare('Nxf5', myboard.bitboards.N, myboard.getLegalMoves(2, 'knight', true), 'f5',
+                                              2, false, true)
+                .should.eql('e3')
+        })
+        it("should error on Nd5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Nd5', myboard.bitboards.N, myboard.getLegalMoves(2, 'knight', false), 'd5',
+                                              2, false, false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many knights can move to "d5", need more disambiguation than "' +
+                                              'Nd5"', name: "InvalidMoveError"})
+        })
+        it("should error on Ncd5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'Ncd5', myboard.bitboards.N, myboard.getLegalMoves(2, 'knight', false), 'd5',
+                                              2, 'c', false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many knights can move to "d5", need more disambiguation than "' +
+                                              'c"', name: "InvalidMoveError"})
+        })
+        it("should error on N3d5", function() {
+            myboard.detectStartingSquare.bind(myboard, 'N3d5', myboard.bitboards.N, myboard.getLegalMoves(2, 'knight', false), 'd5',
+                                              2, '3', false)
+                .should.throwError(chess.InvalidMoveError,
+                                   {message: 'Too many knights can move to "d5", need more disambiguation than "' +
+                                              '3"', name: "InvalidMoveError"})
+        })
     })
     describe("queen", function() {
         beforeEach(function() {
