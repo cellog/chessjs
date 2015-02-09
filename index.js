@@ -1,13 +1,13 @@
 var chess = require('./lib/board.js'),
     Vector = chess.vector
 var myboard = chess.board.fromTextBoard(
-                'Q...QQ..' +
-                '....p...' +
-                'p.......' +
-                'Q.......' +
                 '........' +
                 '........' +
-                '....Q...' +
+                '........' +
+                '....pP..' +
+                '...P.P..' +
+                '........' +
+                '.P......' +
                 '........'
             )
-console.log(myboard.parseAlgebraicNotation('Qe6'))
+console.log(myboard.parseAlgebraicNotation('bxc3'))

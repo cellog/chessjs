@@ -32,6 +32,60 @@ describe("Chessboard parseAlgebraicNotation", function() {
                                    {message: '"abxc4" is not valid algebraic notation', name: "InvalidMoveError"})
         })
     })
+    describe.only("pawn notation", function() {
+        before(function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '........' +
+                '....pP..' +
+                '...P.P..' +
+                '........' +
+                '.P......' +
+                '........'
+            )
+        })
+        after(function() {
+            myboard = new chess.board
+        })
+        it("b3", function() {
+            myboard.parseAlgebraicNotation('b3').should.eql(['b2', 'b3'])
+        })
+        it("b4", function() {
+            myboard.parseAlgebraicNotation('b4').should.eql(['b2', 'b4'])
+        })
+        it("d4xe5", function() {
+            myboard.parseAlgebraicNotation('d4xe5').should.eql(['d4', 'e5'])
+        })
+        it("f4xe5", function() {
+            myboard.parseAlgebraicNotation('f4xe5').should.eql(['f4', 'e5'])
+        })
+        it("f6", function() {
+            myboard.parseAlgebraicNotation('f6').should.eql(['f5', 'f6'])
+        })
+        it("fxe5", function() {
+            myboard.parseAlgebraicNotation('fxe5').should.eql(['f4', 'e5'])
+        })
+        it("dxe5", function() {
+            myboard.parseAlgebraicNotation('dxe5').should.eql(['d4', 'e5'])
+        })
+        it("invalid: f5", function() {
+            myboard.parseAlgebraicNotation.bind(myboard, 'f5').should.throwError(chess.InvalidMoveError,
+                                   {message: 'Queens cannot move to "b5"', name: "InvalidMoveError"})
+        })
+        it("invalid: f7", function() {
+            myboard.parseAlgebraicNotation.bind(myboard, 'f7').should.throwError(chess.InvalidMoveError,
+                                   {message: '"f7" attempts to move non-existent piece', name: "InvalidMoveError"})
+        })
+        it("invalid: bxc3", function() {
+            myboard.parseAlgebraicNotation.bind(myboard, 'bxc3').should.throwError(chess.InvalidMoveError,
+                                   {message: 'Pawn capture at "c3" is impossible, no enemy piece on that square', name: "InvalidMoveError"})
+        })
+        it("invalid: hxg3", function() {
+            myboard.parseAlgebraicNotation.bind(myboard, 'hxg3').should.throwError(chess.InvalidMoveError,
+                                   {message: 'Pawn capture at "g3" is impossible, no enemy piece on that square', name: "InvalidMoveError"})
+        })
+    })
     describe("queen notation", function() {
         before(function() {
             myboard = chess.board.fromTextBoard(
