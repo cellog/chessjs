@@ -2,12 +2,12 @@ var chess = require('./lib/board.js'),
     Vector = chess.vector
 var myboard = chess.board.fromTextBoard(
                 '........' +
+                '.p......' +
                 '........' +
-                '........' +
-                '....pP..' +
-                '...P.P..' +
+                '...p.p..' +
+                '..P.P.P.' +
                 '........' +
                 '.P......' +
                 '........'
-            )
-console.log(myboard.parseAlgebraicNotation('bxc3'))
+            ), unused = new chess.bitboard(0,0)
+console.log(myboard.detectStartingSquare('e4xd5', myboard.bitboards.P, unused, 'd5', 0, 'e4', true))

@@ -9,10 +9,30 @@ describe("Chessboard detectStartingSquare", function() {
             myboard = new chess.board
         })
         it("should fail on axc4", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '........' +
+                '........' +
+                '..b.....' +
+                '........' +
+                '........' +
+                '........'
+            )
             myboard.detectStartingSquare.bind(myboard, 'axc4', unused, unused, "c4", 0, "a", true)
                 .should.throwError(chess.InvalidMoveError, {message: 'Pawn capture move must be an adjacent file to "c4", not "a"', name: "InvalidMoveError"})
         })
         it("should fail on bxc4", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '........' +
+                '........' +
+                '..b.....' +
+                '........' +
+                '........' +
+                '........'
+            )
             myboard.detectStartingSquare.bind(myboard, 'bxc4', unused, unused, "c4", 0, "b", true)
                 .should.throwError(chess.InvalidMoveError, {message: 'Pawn capture from "b3" to "c4" is impossible, no pawn on "b3"', name: "InvalidMoveError"})
         })
@@ -21,11 +41,45 @@ describe("Chessboard detectStartingSquare", function() {
                 .should.throwError(chess.InvalidMoveError, {message: '"e5" attempts to move non-existent piece', name: "InvalidMoveError"})
         })
         it("should fail on Pxc5", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '........' +
+                '..b.....' +
+                '........' +
+                '........' +
+                '........' +
+                '........'
+            )
             myboard.detectStartingSquare.bind(myboard, 'Pxc5', unused, unused, "c5", 0, false, true)
                 .should.throwError(chess.InvalidMoveError, {message: "Pawn capture move must be a file (a-h) or square", name: "InvalidMoveError"})
         })
         it("should fail on dxc5", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '........' +
+                '..b.....' +
+                '........' +
+                '........' +
+                '........' +
+                '........'
+            )
             myboard.detectStartingSquare.bind(myboard, 'dxc5', unused, unused, "c5", 0, 'd', true)
+                .should.throwError(chess.InvalidMoveError, {message: 'Pawn capture from "d4" to "c5" is impossible, no pawn on "d4"', name: "InvalidMoveError"})
+        })
+        it("should fail on d4xc5", function() {
+            myboard = chess.board.fromTextBoard(
+                '........' +
+                '........' +
+                '........' +
+                '..b.....' +
+                '........' +
+                '........' +
+                '........' +
+                '........'
+            )
+            myboard.detectStartingSquare.bind(myboard, 'd4xc5', unused, unused, "c5", 0, 'd4', true)
                 .should.throwError(chess.InvalidMoveError, {message: 'Pawn capture from "d4" to "c5" is impossible, no pawn on "d4"', name: "InvalidMoveError"})
         })
     })
@@ -44,6 +98,12 @@ describe("Chessboard detectStartingSquare", function() {
         })
         it("should return e4 for exd5", function() {
             myboard.detectStartingSquare('exd5', myboard.bitboards.P, unused, 'd5', 0, 'e', true).should.eql('e4')
+        })
+        it("should return e4 for e4xd5", function() {
+            myboard.detectStartingSquare('e4xd5', myboard.bitboards.P, unused, 'd5', 0, 'e4', true).should.eql('e4')
+        })
+        it("should return c4 for c4xd5", function() {
+            myboard.detectStartingSquare('c4xd5', myboard.bitboards.P, unused, 'd5', 0, 'c4', true).should.eql('c4')
         })
         it("should return d5 for dxe4 black", function() {
             myboard.blackToMove()
